@@ -1,0 +1,19 @@
+{
+  "fr": {
+    "erreurChampManquant" : "Erreur dans le fichier '%s' à la ligne %d : Le champ %s est manquant.",
+    "erreurNombreChampsInattendus": "Le nombre de colonnes est, soit en trop, soit en moins : vous devez avoir %d colonnes remplies à la ligne : %d",
+    "erreurArrondissementInvalide": "Erreur! '%s' n'est pas reconnu comme un arrondissement de Montreal.",
+    "erreurDescriptionInterventionInvalide": "Erreur! '%s' n'est pas reconnu comme une description d'intervention policière valide.",
+    "erreurFormatHeureInvalide": "Erreur dans le fichier '%s' à la ligne %d. Le format de d'heure d'intervention '%s' est invalide. Assurez-vous que l'heure est conforme au format ISO 8601 (HH:MM).",
+    "erreurDateInvalide": "Erreur dans le fichier '%s' à la ligne %d, La date d'intervention: '%s' est postérieure à la date actuelle.",
+    "erreurEcritureDansFichier": "Erreur lors de de la sauvegarde des statistiques dans le fichier de sortie '%s'.Veuillez vérifier que le chemin du fichier est correct et que vous avez les autorisations nécessaires pour écrire dans ce fichier.",
+    "erreurLectureFichier": "Erreur lors de la lecture du fichier '%s'. Assurez-vous que le fichier existe et est accessible. Vérifiez les autorisations du fichier et réessayez.",
+    "erreurLectureArrayJson": "Une exception s'est produite lors de la manipulation JSON. Vérifier bien que le nom de l'array JSON est valide.",
+    "arrondissement": "Arrondissement",
+    "nombreInterventions": "Nombre d'intervention",
+    "nombreParcs": "Nombre de parcs",
+    "erreurNombreParametresInvalide" : "Erreur : Veuillez spécifier les emplacements des fichiers d'entrée et de sortie.\nVeuillez utiliser la commande suivante dans la ligne de commande :\njava -jar target/inf2050-sprint-1.0-jar-with-dependencies.jar <chemin_fichier_entree> <chemin_fichier_sortie>\nRemplacez <chemin_fichier_entree> par le chemin de votre fichier CSV d'entrée et <chemin_fichier_sortie> par le chemin et un nom souhaité pour votre fichier CSV de sortie."
+
+  }
+
+}

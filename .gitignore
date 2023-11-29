@@ -1,0 +1,5 @@
+*.iml
+.DS_Store
+Version-corrige-INF2050/inf2050-sprint/.idea/vcs.xml
+*.class
+/target/

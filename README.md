@@ -1,92 +1,92 @@
-# sprint-inf2050
+# INF2050 - Sprint
+
+## Introduction
+
+Bienvenue dans le projet du cours INF2050 ! Ce projet vise à développer un logiciel qui effectuera des statistiques sur les interventions policières dans les parcs de la ville de Montréal. L'objectif principal de ce projet est de créer un moteur de règles d'affaires pour analyser les données d'interventions policières et générer des statistiques utiles.
+
+## Objectif du Projet
+L'objectif principal de ce projet est de créer un logiciel capable d'analyser des données sur les interventions policières dans les parcs de Montréal. Le logiciel prendra en entrée un fichier de données et générera un fichier de résultat contenant une liste des arrondissements de la ville, triés en ordre alphabétique, avec le nombre d'interventions policières enregistrées dans chaque arrondissement.
+Ce logiciel ne comporte pas d'interface utilisateur propre, mais il est conçu pour être invoqué à partir d'une application web.
+## Guide d'utilisation
+
+    1. Veuillez cloner le projet à l'aide de la commande suivante:
+        
+        git clone https://gitlab.info.uqam.ca/ha.le_minh/inf2050-sprint.git
+
+    2. Ouvrez votre terminal et dirigez vous dans le dossier où que vous avez utilisé la commmande git clone à l'aide de la commande cd.    
+    
+        Par exemple:
+
+        cd Desktop/INF2050/inf2050-sprint/Java/
+
+    3. Vous allez compiler le classe main avec la commande suivante:
+
+        javac Main.java
+
+    4. Vous allez par la suite exécuter la classe Main et ajouter un fichier d'entrée comme test ainsi qu'un fichier de sortie pour 
+        le résultat.
+
+        java Main.java ../Test/test1.csv FichierOutput.csv
+
+    5. S'il y a aucun message d'erreur, cela veut dire que tout s'est bien passé. 
+        Vous allez ensuite afficher le résultat dans le fichier de sortie à l'aide de la commande suivante:
+
+        cat FichierOutput.csv
+        
+## Contribution
+
+    @Auteur: Eglantine Clervil,  Minh Ha,  Farah Bouaiche,  Suzanne Kamdem
+    * @Courriel: clervil.eglantine_anne@courrier.uqam.ca, ha.le_minh@courrier.uqam.ca, bouaiche.farah@courrier.uqam.ca, 
+        kamdem_pouomogne.suzanne_leocadie@courrier.uqam.ca
+    * @Code-permanent: CLEE89530109, HAXL19089505, BOUF06379700, KAMS17628009
+    * @Groupe: 30
+    * Université Du Quebec à Montréal (UQAM)
+
+## Structure du fichier d'entrée
+
+    Le fichier d'entrée doit être au format CSV et doit contenir la structure de données suivante:
+
+        Date, Heure, Parc, Arrondissement, Description
+
+    Date: La date de l'intervention policière, en format ISO 8601.
+    Heure: L'heure de l'intervention policière.
+    Le nom du parc où l'intervention a eu lieu.
+    Le nom de l'arrondissement contenant ce parc. 
+    Une description de l'énevement.
 
 
+    Voici un exemple de fichier d'entrée:
 
-## Getting started
+    Date,Heure,Parc,Arrondissement,Description
+    2023-04-15,0:00,Parc du Mont-Royal,Outremont,Vente de drogues
+    2023-09-28,3:45,Parc Angrignon,Le Sud-Ouest,Bagarre
+    2023-08-07,7:30,Parc La Fontaine,Le Plateau-Mont-Royal,Manifestation illégale
+    2023-06-12,11:15,Parc Angrignon,Le Sud-Ouest,Vol de véhicule à moteur
+    2023-09-24,14:20,Parc Angrignon,Le Sud-Ouest,Port d'arme prohibée
+    2023-02-19,18:05,Parc des Rapides,LaSalle,Possession / consommation de stupéfiant
+    2023-01-20,21:50,Parc des Rapides,LaSalle,Possession / consommation de stupéfiant
+    2023-04-12,2:25,Parc La Fontaine,Le Plateau-Mont-Royal,Méfait
 
-To make it easy for you to get started with GitLab, here's a list of recommended next steps.
+    Voici un exemple de fichier de sortie:
 
-Already a pro? Just edit this README.md and make it your own. Want to make it easy? [Use the template at the bottom](#editing-this-readme)!
+    Arrondissement, Nombre d'interventions, Nombre de parcs
+    Outremont, 1, 1
+    Le Sud-Ouest, 3, 1
+    Le Plateau-Mont-Royal, 2, 1
+    LaSalle, 2, 1
 
-## Add your files
+## Données invalides
 
-- [ ] [Create](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#create-a-file) or [upload](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#upload-a-file) files
-- [ ] [Add files using the command line](https://docs.gitlab.com/ee/gitlab-basics/add-file.html#add-a-file-using-the-command-line) or push an existing Git repository with the following command:
+    Si vous rentrez un nom de fichier qui n'existe pas, le message d'erreur suivant va sortir:
 
-```
-cd existing_repo
-git remote add origin https://gitlab.info.uqam.ca/clervil.eglantine_anne/Sprint-inf2050.git
-git branch -M main
-git push -uf origin main
-```
+        Fichier introuvable. Assurez-vous que le chemin du fichier existe.
 
-## Integrate with your tools
+        Erreur lors de la lecture du fichier. Assurez-vous de vérifier sa validité.
 
-- [ ] [Set up project integrations](https://gitlab.info.uqam.ca/clervil.eglantine_anne/Sprint-inf2050/-/settings/integrations)
+    Si vous rentrez un fichier qui manque une donnée, le message d'erreur suivant va sortir:
 
-## Collaborate with your team
+        Information manquante dans au moins une ligne du fichier, dont celle-ci:
+    
+## Conclusion
 
-- [ ] [Invite team members and collaborators](https://docs.gitlab.com/ee/user/project/members/)
-- [ ] [Create a new merge request](https://docs.gitlab.com/ee/user/project/merge_requests/creating_merge_requests.html)
-- [ ] [Automatically close issues from merge requests](https://docs.gitlab.com/ee/user/project/issues/managing_issues.html#closing-issues-automatically)
-- [ ] [Enable merge request approvals](https://docs.gitlab.com/ee/user/project/merge_requests/approvals/)
-- [ ] [Set auto-merge](https://docs.gitlab.com/ee/user/project/merge_requests/merge_when_pipeline_succeeds.html)
-
-## Test and Deploy
-
-Use the built-in continuous integration in GitLab.
-
-- [ ] [Get started with GitLab CI/CD](https://docs.gitlab.com/ee/ci/quick_start/index.html)
-- [ ] [Analyze your code for known vulnerabilities with Static Application Security Testing(SAST)](https://docs.gitlab.com/ee/user/application_security/sast/)
-- [ ] [Deploy to Kubernetes, Amazon EC2, or Amazon ECS using Auto Deploy](https://docs.gitlab.com/ee/topics/autodevops/requirements.html)
-- [ ] [Use pull-based deployments for improved Kubernetes management](https://docs.gitlab.com/ee/user/clusters/agent/)
-- [ ] [Set up protected environments](https://docs.gitlab.com/ee/ci/environments/protected_environments.html)
-
-***
-
-# Editing this README
-
-When you're ready to make this README your own, just edit this file and use the handy template below (or feel free to structure it however you want - this is just a starting point!). Thank you to [makeareadme.com](https://www.makeareadme.com/) for this template.
-
-## Suggestions for a good README
-Every project is different, so consider which of these sections apply to yours. The sections used in the template are suggestions for most open source projects. Also keep in mind that while a README can be too long and detailed, too long is better than too short. If you think your README is too long, consider utilizing another form of documentation rather than cutting out information.
-
-## Name
-Choose a self-explaining name for your project.
-
-## Description
-Let people know what your project can do specifically. Provide context and add a link to any reference visitors might be unfamiliar with. A list of Features or a Background subsection can also be added here. If there are alternatives to your project, this is a good place to list differentiating factors.
-
-## Badges
-On some READMEs, you may see small images that convey metadata, such as whether or not all the tests are passing for the project. You can use Shields to add some to your README. Many services also have instructions for adding a badge.
-
-## Visuals
-Depending on what you are making, it can be a good idea to include screenshots or even a video (you'll frequently see GIFs rather than actual videos). Tools like ttygif can help, but check out Asciinema for a more sophisticated method.
-
-## Installation
-Within a particular ecosystem, there may be a common way of installing things, such as using Yarn, NuGet, or Homebrew. However, consider the possibility that whoever is reading your README is a novice and would like more guidance. Listing specific steps helps remove ambiguity and gets people to using your project as quickly as possible. If it only runs in a specific context like a particular programming language version or operating system or has dependencies that have to be installed manually, also add a Requirements subsection.
-
-## Usage
-Use examples liberally, and show the expected output if you can. It's helpful to have inline the smallest example of usage that you can demonstrate, while providing links to more sophisticated examples if they are too long to reasonably include in the README.
-
-## Support
-Tell people where they can go to for help. It can be any combination of an issue tracker, a chat room, an email address, etc.
-
-## Roadmap
-If you have ideas for releases in the future, it is a good idea to list them in the README.
-
-## Contributing
-State if you are open to contributions and what your requirements are for accepting them.
-
-For people who want to make changes to your project, it's helpful to have some documentation on how to get started. Perhaps there is a script that they should run or some environment variables that they need to set. Make these steps explicit. These instructions could also be useful to your future self.
-
-You can also document commands to lint the code or run tests. These steps help to ensure high code quality and reduce the likelihood that the changes inadvertently break something. Having instructions for running tests is especially helpful if it requires external setup, such as starting a Selenium server for testing in a browser.
-
-## Authors and acknowledgment
-Show your appreciation to those who have contributed to the project.
-
-## License
-For open source projects, say how it is licensed.
-
-## Project status
-If you have run out of energy or time for your project, put a note at the top of the README saying that development has slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or owner, allowing your project to keep going. You can also make an explicit request for maintainers.
+En résumé, nous croyons fermement que cette documentation vous a fourni toutes les informations requises pour tirer profit de   notre logiciel de remboursement des réclamations d'assurance santé. Si vous faites face à des problèmes ou si des questions vous préoccupent, ne tardez pas à prendre contact avec notre service d'assistance, qui est là pour vous apporter son soutien avec plaisir.
