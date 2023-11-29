@@ -9,11 +9,11 @@ public class Main {
         // Il faut entrer le fichier d'entrée et de sortie en ligne de commande.
        if( args.length < 2 ) {
 
-            throw new ArrayIndexOutOfBoundsException("Erreur : Veuillez spécifier les emplacements des fichiers d'entrée et de sortie.\n" +
-                   "Veuillez utiliser la commande suivante dans la ligne de commande :\n" +
-                   "java -jar target/inf2050-sprint-1.0-jar-with-dependencies.jar <chemin_fichier_entree> <chemin_fichier_sortie>\n" +
-                   "Remplacez <chemin_fichier_entree> par le chemin de votre fichier CSV d'entrée et\n " +
-                    "<nom_fichier_sortie> par le nom souhaité pour votre fichier CSV de sortie.");
+           throw new ArrayIndexOutOfBoundsException("Erreur : Veuillez spécifier les emplacements des fichiers d'entrée et de sortie." +
+                   "Veuillez utiliser la commande suivante dans la ligne de commande : " +
+                   "java -jar target/inf2050-sprint-1.0-jar-with-dependencies.jar <chemin_fichier_entree> <chemin_fichier_sortie>" +
+                   "Remplacez <chemin_fichier_entree> par le chemin absolu ou relatif, sans espace, de votre fichier CSV d'entrée et " +
+                    "<nom_fichier_sortie> par le chemin absolu ou relatif de votre fichier CSV de sortie.");
 
 
        }
