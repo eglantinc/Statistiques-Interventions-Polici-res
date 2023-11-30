@@ -71,26 +71,9 @@
             <version>1.1.1</version>
         </dependency>
 
-        <dependency>
-            <groupId>com.ibm.icu</groupId>
-            <artifactId>icu4j-charset</artifactId>
-            <version>68.1</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.ibm.icu</groupId>
-            <artifactId>icu4j-localespi</artifactId>
-            <version>68.1</version>
-        </dependency>
-
     </dependencies>
 
     <build>
-        <resources>
-            <resource>
-                <directory>src/main/resources</directory>
-            </resource>
-        </resources>
 
         <plugins>
             <plugin>
@@ -102,6 +85,18 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.11.0</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>3.3.1</version>
+                <configuration>
+                    <resources>
+                        <resource>
+                            <directory>src/main/resources</directory>
+                        </resource>
+                    </resources>
+                </configuration>
             </plugin>
             <plugin>
                 <artifactId>maven-assembly-plugin</artifactId>
@@ -127,21 +122,6 @@
                 </executions>
             </plugin>
 
-            <plugin>
-                <groupId>de.herberlin.translate</groupId>
-                <artifactId>translate-maven-plugin</artifactId>
-                <version>1.1.5</version>
-                <configuration>
-                    <mode>json</mode>
-                    <source>i18n/fr.json</source>
-                    <certificate>keys/practical-robot-406304-e294c0f73f79.json</certificate>
-                    <serviceUrl>https://www.googleapis.com/auth/cloud-platform</serviceUrl>
-                    <translator>google</translator>
-                    <languages>
-                        <language>en</language>
-                    </languages>
-                </configuration>
-            </plugin>
         </plugins>
     </build>
 </project>
