@@ -3,19 +3,17 @@ import java.util.ResourceBundle;
 
 public class TraducteurFrancaisToAnglais {
 
-    public void traduireAnglaisEnFrancais() {
-        Locale locale = new Locale.Builder().setLanguage("en").build();
-        ResourceBundle message = ResourceBundle.getBundle("src/main/resources/message.properties", locale);
-        String greeting = message.getString("erreurChampManquant");
+    private static final Locale LANGUE_DE_TRADUCTION = Locale.ENGLISH;
 
+    public static String traduireAnglaisEnFrancais(String cleFichierProperties, Object... args) {
+        ResourceBundle messagesRessourceFrancais = ResourceBundle.getBundle("message", LANGUE_DE_TRADUCTION);
+        String message = messagesRessourceFrancais.getString(cleFichierProperties);
+
+        return String.format(message, args);
     }
-
-    public static void main(String[] args) {
-        Locale locale = new Locale.Builder().setLanguage("en").build();
-        ResourceBundle message = ResourceBundle.getBundle("message", locale);
-        String greeting = message.getString("erreurChampManquant");
-        System.out.println(greeting);
-    }
-
-
 }
+
+
+
+
+
