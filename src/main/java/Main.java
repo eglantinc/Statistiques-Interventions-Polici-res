@@ -5,24 +5,28 @@ public class Main {
 
     public static void main(String[] args) throws IOException {
 
+        boolean estAnglais = args[0].equals("--english");
+        System.out.println("estAnglais:" + estAnglais);
+        TraducteurSingleton.getInstance()
+                .setLangueEnCours(estAnglais ? Traducteur.ANGLAIS : Traducteur.FRANCAIS);
 
         // Il faut entrer le fichier d'entrée et de sortie en ligne de commande.
-       if( args.length < 2 ) {
+        if( args.length < 2) {
+            throw new ArrayIndexOutOfBoundsException(TraducteurSingleton.getInstance().traduire("nombreInterventions"));
 
-           throw new ArrayIndexOutOfBoundsException("Erreur : Veuillez spécifier les emplacements des fichiers d'entrée et de sortie." +
-                   "Veuillez utiliser la commande suivante dans la ligne de commande : " +
-                   "java -jar target/inf2050-sprint-1.0-jar-with-dependencies.jar <chemin_fichier_entree> <chemin_fichier_sortie>" +
-                   "Remplacez <chemin_fichier_entree> par le chemin absolu ou relatif, sans espace, de votre fichier CSV d'entrée et " +
-                    "<nom_fichier_sortie> par le chemin absolu ou relatif de votre fichier CSV de sortie.");
-
-
-       }
+//            throw new ArrayIndexOutOfBoundsException("Erreur : Veuillez spécifier les emplacements des fichiers d'entrée et de sortie." +
+//                    "Veuillez utiliser la commande suivante dans la ligne de commande : " +
+//                    "java -jar target/inf2050-sprint-1.0-jar-with-dependencies.jar <chemin_fichier_entree> <chemin_fichier_sortie>" +
+//                    "Remplacez <chemin_fichier_entree> par le chemin absolu ou relatif, sans espace, de votre fichier CSV d'entrée et " +
+//                    "<nom_fichier_sortie> par le chemin absolu ou relatif de votre fichier CSV de sortie.");
 
 
-        String cheminFichierEntree = args[0];
-        String cheminFichierSortie = args[1];
+        }
 
-         traiterInterventionsPolicieres( cheminFichierEntree, cheminFichierSortie );
+        String cheminFichierEntree = args[1];
+        String cheminFichierSortie = args[2];
+
+        traiterInterventionsPolicieres( cheminFichierEntree, cheminFichierSortie );
 
     }
 
