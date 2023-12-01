@@ -1,5 +1,6 @@
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.ResourceBundle;
 
 public class GestionDonneesAvecFichierJson {
 
@@ -23,7 +24,8 @@ public class GestionDonneesAvecFichierJson {
 
             if( !arrondissementsDeMontreal.contains(arrondissement) ) {
 
-                throw new InformationInvalideDansLeFichierEntree(String.format("Erreur! '%s' n'est pas reconnu comme un arrondissement de Montreal.",arrondissement));
+                throw new InformationInvalideDansLeFichierEntree(TraducteurSingleton.getInstance()
+                        .traduire("erreurArrondissementInvalide", arrondissement));
             }
 
         }
@@ -48,8 +50,8 @@ public class GestionDonneesAvecFichierJson {
 
             if( !descriptionsInterventionsConsidereesValides.contains(uneDescription) ) {
 
-                throw new InformationInvalideDansLeFichierEntree(
-                       String.format("Erreur! '%s' n'est pas reconnu comme une description d'intervention policière valide.", uneDescription));
+                throw new InformationInvalideDansLeFichierEntree( TraducteurSingleton.getInstance()
+                        .traduire("erreurDescriptionInterventionInvalide", uneDescription));
             }
 
         }

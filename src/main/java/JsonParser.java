@@ -37,12 +37,10 @@ public class JsonParser {
             }
 
         } catch (IOException e) {
-            throw new IOException(String.format("Erreur lors de la lecture du fichier '%s'. "
-                    + "Assurez-vous que le fichier existe et est accessible. "
-                    + "Vérifiez les autorisations du fichier et réessayez.", cheminFichierJson));
+            throw new IOException(TraducteurSingleton.getInstance().traduire("erreurLectureFichier"
+                    , cheminFichierJson));
         } catch (ParseException e) {
-            throw new RuntimeException("Une exception s'est produite lors de la manipulation JSON. "
-                    + "Vérifier bien que le nom de l'array JSON est valide.");
+            throw new RuntimeException(TraducteurSingleton.getInstance().traduire("erreurLectureArrayJson"));
         }
 
         return informationSurInterventionDansJson;

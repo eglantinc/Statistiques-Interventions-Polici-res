@@ -17,9 +17,8 @@ public class GestionHeureIntervention {
 
         } catch( DateTimeParseException exception ) {
 
-            throw new InformationInvalideDansLeFichierEntree(String.format("Erreur dans le fichier '%s' à la ligne %d. " +
-                    "Le format de d'heure d'intervention '%s' est invalide. Assurez-vous que " +
-                    "l'heure est conforme au format ISO 8601 (HH:MM).", nomFichier, numeroLigne,
+            throw new InformationInvalideDansLeFichierEntree(TraducteurSingleton.getInstance()
+                    .traduire("erreurFormatHeureInvalide", nomFichier, numeroLigne,
                     heureInterventionString ) );
 
         }

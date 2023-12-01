@@ -29,10 +29,8 @@ public class InterventionsPolicieresWriter {
 
         } catch( IOException e ) {
 
-            throw new RuntimeException(String.format("Erreur lors de de la sauvegarde des statistiques " +
-                    "dans le fichier de sortie '%s'" +
-                    "Veuillez vérifier que le chemin du fichier est correct " +
-                    "et que vous avez les autorisations nécessaires pour écrire dans ce fichier.", fichierSortie));
+            throw new RuntimeException(String.format(TraducteurSingleton.getInstance()
+                    .traduire("erreurEcritureDansFichier"), fichierSortie));
 
         }
     }

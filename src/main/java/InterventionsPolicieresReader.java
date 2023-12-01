@@ -83,9 +83,7 @@ public class InterventionsPolicieresReader {
                 numeroDeLigne++;
             }
         } catch( IOException ex ) {
-            throw new RuntimeException("Erreur lors de la lecture du fichier '" + nomFichier
-                    + "'. Assurez-vous que le fichier existe et est accessible. "
-                    + "Vérifiez les autorisations du fichier et réessayez. " );
+            throw new RuntimeException(TraducteurSingleton.getInstance().traduire("erreurLectureFichier", cheminFichier) );
         }
         return interventions;
     }

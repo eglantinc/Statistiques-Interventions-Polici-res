@@ -26,8 +26,8 @@ public class GestionChampsVides {
     public void gererChampVide(String[] colonnes, int numeroDeLigne) throws ChampVideDansFichierEntree {
         for (int i = 0; i < colonnes.length; i++) {
             if (colonnes[i].isEmpty()) {
-                throw new ChampVideDansFichierEntree(String.format("Erreur dans le fichier '%s' à la ligne %d : " +
-                                "Le champ %s est manquant.", fichierCSV, numeroDeLigne, premiereLigne[i]));
+                throw new ChampVideDansFichierEntree(TraducteurSingleton.getInstance().traduire("erreurChampManquant", fichierCSV,
+                        numeroDeLigne, premiereLigne[i]));
             }
         }
     }
@@ -47,8 +47,7 @@ public class GestionChampsVides {
     public static void compterChampsAttendus(String[] colonnes, int numeroDeLigne){
         // Vérifier si le nombre de champs est inférieur ou supérieur à celui attendu
         if (colonnes.length != NOMBRE_COLONNES) {
-            throw new ArrayIndexOutOfBoundsException(String.format("Le nombre de colonnes est, soit en trop, soit en moins : " +
-                    "vous devez avoir %d colonnes remplies à la ligne : %d", NOMBRE_COLONNES, numeroDeLigne));
+            throw new ArrayIndexOutOfBoundsException(TraducteurSingleton.getInstance().traduire("erreurNombreChampsInattendus", NOMBRE_COLONNES, numeroDeLigne));
         }
     }
 
