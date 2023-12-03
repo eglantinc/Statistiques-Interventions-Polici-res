@@ -29,8 +29,8 @@ public class InterventionsPolicieresWriter {
 
         } catch( IOException e ) {
 
-            throw new RuntimeException(String.format(TraducteurSingleton.getInstance()
-                    .traduire("erreurEcritureDansFichier"), fichierSortie));
+            throw new RuntimeException(TraducteurSingleton.getInstance()
+                    .traduire("erreurEcritureDansFichier", fichierSortie));
 
         }
     }
