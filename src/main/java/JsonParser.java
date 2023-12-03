@@ -40,7 +40,7 @@ public class JsonParser {
             throw new IOException(TraducteurSingleton.getInstance().traduire("erreurLectureFichier"
                     , cheminFichierJson));
         } catch (ParseException e) {
-            throw new RuntimeException(TraducteurSingleton.getInstance().traduire("erreurLectureArrayJson"));
+            TraducteurSingleton.getInstance().traduire("erreurLectureArrayJson");
         }
 
         return informationSurInterventionDansJson;
