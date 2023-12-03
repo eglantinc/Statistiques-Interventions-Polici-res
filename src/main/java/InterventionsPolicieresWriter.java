@@ -19,7 +19,7 @@ public class InterventionsPolicieresWriter {
 
             BufferedWriter tamponEcriture = new BufferedWriter(fichierEcriture);
             // Écrire une ligne de chaines de caractères.
-            tamponEcriture.write(ligneSaisie );
+            tamponEcriture.write(ligneSaisie);
 
             tamponEcriture.newLine();
 

@@ -2,6 +2,16 @@ import java.util.*;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * Cette classe est une représentation d'un objet Intervention Policiere qui contient des informations,
+ * telles que la date, l'heure, le parc, l'arrondissement et la description.
+ *
+ * @Author: Eglantine Clervil, Minh Ha, Farah Bouaiche, Suzanne Kamdem
+ * @Courriel: clervil.eglantine_anne@courrier.uqam.ca, ha.le_minh@courrier.uqam.ca, bouaiche.farah@courrier.uqam.ca, kamdem_pouomogne.suzanne_leocadie@courrier.uqam.ca
+ * @Code-permanent: CLEE89530109, HAXL19089505, BOUF06379700, KAMS17628009
+ * @Groupe: 30
+ */
+
 public class ListeArrondissementsInterventionsPolicieres {
 
     private ArrayList<String> listeArrondissements;

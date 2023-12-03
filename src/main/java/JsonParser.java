@@ -7,9 +7,13 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 /**
- * Cette classe fournit des méthodes pour lire des données à partir d'un fichier JSON
- * et les charger dans une structure de données ArrayList.
- * Elle utilise la bibliothèque JSON-lib (net.sf.json) pour la manipulation des données JSON.
+ * Cette classe est une représentation d'un objet Intervention Policiere qui contient des informations,
+ * telles que la date, l'heure, le parc, l'arrondissement et la description.
+ *
+ * @Author: Eglantine Clervil
+ * @Courriel: clervil.eglantine_anne@courrier.uqam.ca
+ * @Code-permanent: CLEE89530109
+ * @Groupe: 30
  */
 public class JsonParser {
     /**
@@ -21,7 +25,7 @@ public class JsonParser {
      * @throws IOException En cas d'erreur lors de la lecture du fichier JSON.
      */
     public static ArrayList<String> chargerInfosFichierJsonArrayList(String cheminFichierJson,
-                                                                     String nomArrayJson) throws IOException {
+                                                                     String nomArrayJson) throws ParseException  {
         ArrayList<String> informationSurInterventionDansJson = new ArrayList<>();
 
         try {
@@ -37,12 +41,9 @@ public class JsonParser {
             }
 
         } catch (IOException e) {
-            throw new IOException(TraducteurSingleton.getInstance().traduire("erreurLectureFichier"
-                    , cheminFichierJson));
-        } catch (ParseException e) {
-            TraducteurSingleton.getInstance().traduire("erreurLectureArrayJson");
+            TraducteurSingleton.getInstance().traduire("erreurLectureFichier"
+                    , cheminFichierJson);
         }
-
         return informationSurInterventionDansJson;
     }
 

@@ -1,3 +1,5 @@
+import org.json.simple.parser.ParseException;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -14,7 +16,7 @@ public class GestionDonneesAvecFichierJson {
      * @throws InformationInvalideDansLeFichierEntree Si un arrondissement dans le fichier d'entrée n'est pas valide.
      */
     public static void gererArrondissementsDeMontrealInvalides( ArrayList<String> arrondissementsDuFichierEntree )
-            throws IOException {
+            throws IOException, ParseException {
 
         ArrayList<String> arrondissementsDeMontreal = JsonParser
                 .chargerInfosFichierJsonArrayList ("fichiers_json/arrondissements.json",
@@ -40,7 +42,7 @@ public class GestionDonneesAvecFichierJson {
      * @throws IOException En cas d'erreur lors du chargement des informations depuis le fichier JSON.
      * @throws InformationInvalideDansLeFichierEntree Si une intervention dans le fichier d'entrée n'est pas valide.
      */
-    public static void gererDescriptionInterventionsInvalides(ArrayList<String> descriptionsDansFichierEntree) throws IOException {
+    public static void gererDescriptionInterventionsInvalides(ArrayList<String> descriptionsDansFichierEntree) throws IOException, ParseException {
 
         ArrayList<String> descriptionsInterventionsConsidereesValides = JsonParser
                 .chargerInfosFichierJsonArrayList ("fichiers_json/intervention_policiere.json",
