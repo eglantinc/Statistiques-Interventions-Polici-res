@@ -5,8 +5,9 @@
 Bienvenue dans le projet du cours INF2050 ! Ce projet vise à développer un logiciel qui effectuera des statistiques sur les interventions policières dans les parcs de la ville de Montréal. L'objectif principal de ce projet est de créer un moteur de règles d'affaires pour analyser les données d'interventions policières et générer des statistiques utiles.
 
 ## Objectif du Projet
-L'objectif principal de ce projet est de créer un logiciel capable d'analyser des données sur les interventions policières dans les parcs de Montréal. Le logiciel prendra en entrée un fichier de données et générera un fichier de résultat contenant une liste des arrondissements de la ville, triés en ordre alphabétique, avec le nombre d'interventions policières enregistrées dans chaque arrondissement.
-Ce logiciel ne comporte pas d'interface utilisateur propre, mais il est conçu pour être invoqué à partir d'une application web.
+L'objectif principal de ce projet est de créer un logiciel capable d'analyser des données sur les interventions policières dans les parcs de Montréal. 
+Le logiciel prendra en entrée un fichier de données et générera un fichier de résultat contenant une liste des arrondissements de la ville, 
+triés en ordre alphabétique, avec le nombre d'interventions policières enregistrées dans chaque arrondissement ainsi que le nombre de parc dans ces arrondissements.
 ## Guide d'utilisation
 
     1. Veuillez cloner le projet à l'aide de la commande suivante:
@@ -97,7 +98,7 @@ Ce logiciel ne comporte pas d'interface utilisateur propre, mais il est conçu p
     
     Si votre programme est lancé avec le paramètre '--english' :
     
-    Borough,Number of interventions,Number of parks
+    District,Number of interventions,Number of parks
     Ahuntsic-Cartierville,4,1
     Lachine,1,1
     Pierrefonds-Roxboro,1,1
@@ -138,50 +139,138 @@ Ce logiciel ne comporte pas d'interface utilisateur propre, mais il est conçu p
         
     3- Erreur d'arrondissement invalide 
 
-        Si un arrondissement de Montréal n'est pas reconnu, 
-        l'erreur sera indiquée de la manière suivante :
+        Si un arrondissement de Montréal n'est pas reconnu comme étant dans le fichier json 
+        'arrondissements.json', l'erreur sera indiquée de la manière suivante :
+        
+        Erreur ! 'arrondissement_invalide' n'est pas reconnu comme un arrondissement de Montreal.
+
+        Si votre programme est lancé avec le paramètre '--english' :
+        
+        Error! 'arrondissement_invalide' is not recognized as a borough of Montreal.
+
+        Où 'arrondissement_invalide' désigne le mot dans la colonne arrondissement n'étant
+        pas reconnu par le fichier json.
         
         
     4- Erreur de description d'intervention invalide
     
         Si la description d'une intervention policière n'est pas reconnue, 
         le message d'erreur sera formulé comme suit :
+        
+        Erreur ! 'intervention_invalide' n'est pas reconnu comme une description d'intervention policière valide.
+        
+        Si votre programme est lancé avec le paramètre '--english' :
+        
+        Error! 'intervention_invalide' is not recognized as a valid police intervention description.
+        
+        Où 'intervention_invalide' désigne le mot dans la colonne description n'étant
+        pas reconnu par le fichier json.
     
     
     5- Erreur de format d'heure invalide
     
-        En cas d'un format d'heure incorrect, 
-        le programme affichera l'erreur suivante :
+        En cas d'un format d'heure incorrect, le programme affichera l'erreur suivante :
+        
+        Erreur dans le fichier 'nom_du_fichier' à la ligne 'ligne_dans_fichier'. 
+        Le format de d'heure d'intervention 'heure_non_conforme' est invalide. 
+        Assurez-vous que l'heure est conforme au format ISO 8601 (HH : MM).
+
+        Si votre programme est lancé avec le paramètre '--english' :
     
+        Error in file 'nom_du_fichier' at line 'ligne_dans_fichier'. 
+        The intervention time format 'heure_non_conforme' is invalid. 
+        Make sure the time conforms to ISO 8601 format (HH:MM).
+        
+        Où 'nom_du_fichier' désigne le nom du fichier d'entrée csv, 'heure_non_conforme' 
+        désigne l'information dans la colonne heure considérée non conforme
+        et 'numero_de_ligne', la ligne où s'est déroulée cette erreur.
     
     6- Erreur de date invalide
     
         Si la date d'intervention est postérieure à la date actuelle, 
         le message d'erreur sera comme suit :
-    
+
+        Erreur dans le fichier 'nom_du_fichier' à la ligne 'ligne_dans_fichier', La date d'intervention : 
+        'date_hors_limite' est postérieure à la date actuelle.
+
+        Si votre programme est lancé avec le paramètre '--english' :
+        Error in file 'nom_du_fichier' at line 'ligne_dans_fichier', The intervention 
+        date: 'date_hors_limite' islater than the current date.
+
+        Où 'nom_du_fichier' désigne le nom du fichier d'entrée csv. Où 'date_hors_limite' 
+        désigne une date hors limite et 'numero_de_ligne', 
+        la ligne où s'est déroulée cette erreur.
+        
     
     7- Erreur de format de date invalide
     
-        En cas d'un format de date incorrect, 
-        le programme affichera l'erreur suivante :
+        En cas d'un format de date incorrect, le programme affichera l'erreur suivante :
+
+        Erreur dans le fichier 'nom_du_fichier' à la ligne 'ligne_dans_fichier', La date d'intervention : 
+        'date_non_conforme' est invalide. Assurez-vous que la date est conforme au format ISO 8601 (AAAA-MM-JJ).
+
+        Si votre programme est lancé avec le paramètre '--english' :
     
+        Error in the file 'nom_du_fichier' at line 'ligne_dans_fichier'. The intervention date format 'date_non_conforme' 
+        is invalid. Ensure that the date adheres to the ISO 8601 format (YYYY-MM-DD).
+
+        Où 'nom_du_fichier' désigne le nom du fichier d'entrée csv. Où 'date_non_conforme' 
+        désigne l'information dans la colonne date considérée non conforme et 'numero_de_ligne', 
+        la ligne où s'est déroulée cette erreur.
+    
+
     
     8- Erreur d'écriture dans le fichier de sortie
     
         Si une erreur survient lors de la sauvegarde des statistiques dans 
         le fichier de sortie, le message sera formulé comme suit :
+        
+        Erreur lors de la sauvegarde des statistiques dans le fichier de sortie 'nom_fichier_sortie'. 
+        Veuillez vérifier que le chemin du fichier est correct et que vous avez les autorisations 
+        nécessaires pour écrire dans ce fichier.
+
+        Si votre programme est lancé avec le paramètre '--english' :
+        
+        Error saving statistics to output file 'nom_fichier_sortie'. Please verify that the file path is correct 
+        and that you have the necessary permissions to write to this file.
+
+        Où 'nom_fichier_sortie' désigne le nom du fichier de sortie csv.
+        
     
     
     9- Erreur de lecture du fichier
     
         En cas d'erreur lors de la lecture du fichier, le programme 
         affichera le message suivant :
+    
+        Erreur lors de la lecture du fichier 'nom_du_fichier'. Assurez-vous que le fichier existe 
+        et est accessible. Vérifiez les autorisations du fichier et réessayez.
+        
+        Si votre programme est lancé avec le paramètre '--english' :
+        
+        Error reading file 'nom_du_fichier'. Make sure the file exists and is accessible. 
+        Check the file permissions and try again.
+
+        Où 'nom_du_fichier' désigne le nom du fichier d'entrée csv.
 
     
     11- Erreur de nombre de paramètres invalides
     
         En cas d'omission des emplacements des fichiers d'entrée et de sortie
         lors de l'exécution du logiciel, le programme affichera le message suivant :
+        
+        Erreur : Veuillez spécifier les emplacements des fichiers d'entrée et de sortie. 
+        Veuillez utiliser la commande suivante dans la ligne de commande : 
+        java -jar target/inf2050-sprint-1.0-jar-with-dependencies.jar <chemin_fichier_entree> <chemin_fichier_sortie> 
+        Remplacez <chemin_fichier_entree> par le chemin absolu ou relatif, sans espace, de votre fichier CSV d'entrée 
+        et <chemin_fichier_sortie> par le chemin absolu ou relatif de votre fichier CSV de sortie.
+
+        Si votre programme est lancé avec le paramètre '--english' :
+
+        Error: Please specify the locations of the input and output files. Please use the following command in the command line: 
+        java -jar target/inf2050-sprint-1.0-jar-with-dependencies.jar <input_file_path> <output_file_path>. 
+        Replace <input_file_path> by the path, without space, of your input CSV file and <input_file_path> with the path 
+        and name for your output CSV file.
         
     
 ## Conclusion
