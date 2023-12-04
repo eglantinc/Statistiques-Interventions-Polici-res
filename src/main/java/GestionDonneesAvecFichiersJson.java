@@ -2,9 +2,8 @@ import org.json.simple.parser.ParseException;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.ResourceBundle;
 
-public class GestionDonneesAvecFichierJson {
+public class GestionDonneesAvecFichiersJson {
 
     /**
      * Cette méthode vérifie si les arrondissements fournis dans un fichier d'entrée sont valides en les comparant à

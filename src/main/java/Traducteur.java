@@ -2,8 +2,8 @@ import java.util.Locale;
 import java.util.ResourceBundle;
 
 /**
- * Cette classe est une représentation d'un objet Intervention Policiere qui contient des informations,
- * telles que la date, l'heure, le parc, l'arrondissement et la description.
+ * La classe Traducteur fournit des fonctionnalités de
+ * traduction de messages en fonction de la langue choisie.
  *
  * @Author: Eglantine Clervil
  * @Courriel: clervil.eglantine_anne@courrier.uqam.ca
@@ -17,21 +17,27 @@ public class Traducteur {
     public static final Locale FRANCAIS = Locale.FRENCH;
 
 
-    public Locale getLangueEnCours() {
-        return langueEnCours;
-    }
-
     public void setLangueEnCours(Locale langueEnCours) {
         this.langueEnCours = langueEnCours;
     }
 
 
+    /**
+     * La méthode traduire de la classe Traducteur permet de traduire un message en utilisant une clé spécifiée
+     * et les arguments fournis.
+     *
+     * @param cle  La clé du message à traduire.
+     * @param args Les arguments à substituer dans le message.
+     * @return Le message traduit.
+     */
     public String traduire(String cle, Object... args) {
         ResourceBundle messagesRessource = ResourceBundle.getBundle("message", langueEnCours);
         String message = messagesRessource.getString(cle);
 
+        // Substitue les arguments dans le message (s'il y en a) et retourne le résultat
         return String.format(message, args);
     }
+
 
 
 

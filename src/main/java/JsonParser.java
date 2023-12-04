@@ -19,21 +19,25 @@ public class JsonParser {
     /**
      * Charge les informations d'un fichier JSON spécifié dans une ArrayList.
      *
-     * @param cheminFichierJson   Le nom du fichier JSON à lire.
+     * @param cheminFichierJson Le nom du fichier JSON à lire.
      * @param nomArrayJson Le nom du tableau JSON dans le fichier à extraire.
      * @return Une ArrayList contenant les éléments du tableau JSON spécifié.
+     * @throws ParseException En cas d'erreur lors de l'analyse syntaxique du fichier JSON.
      * @throws IOException En cas d'erreur lors de la lecture du fichier JSON.
      */
     public static ArrayList<String> chargerInfosFichierJsonArrayList(String cheminFichierJson,
-                                                                     String nomArrayJson) throws ParseException  {
+                                                                     String nomArrayJson) throws ParseException {
         ArrayList<String> informationSurInterventionDansJson = new ArrayList<>();
 
         try {
-            String jsonText = DiskFile.loadFileIntoString(cheminFichierJson);
+            // Charge le contenu du fichier JSON en tant que chaîne de caractères
+            String jsonString = DiskFile.loadFileIntoString(cheminFichierJson);
 
+            // Utilise un parseur JSON pour convertir la chaîne en objet JSON
             JSONParser parser = new JSONParser();
-            JSONObject objetJson = (JSONObject) parser.parse(jsonText);
+            JSONObject objetJson = (JSONObject) parser.parse(jsonString);
 
+            // Extrait le tableau JSON spécifié du fichier JSON
             JSONArray arrayInformationsValidesFichierJson = (JSONArray) objetJson.get(nomArrayJson);
 
             for (Object objetJava : arrayInformationsValidesFichierJson) {
@@ -41,11 +45,12 @@ public class JsonParser {
             }
 
         } catch (IOException e) {
-            TraducteurSingleton.getInstance().traduire("erreurLectureFichier"
-                    , cheminFichierJson);
+            // En cas d'erreur lors de la lecture du fichier, lance une exception avec un message traduit
+            TraducteurSingleton.getInstance().traduire("erreurLectureFichier", cheminFichierJson);
         }
         return informationSurInterventionDansJson;
     }
+
 
 }
 

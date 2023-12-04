@@ -3,7 +3,6 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 /**
  * Cette classe permet de lire des données d'un fichier CSV d'interventions policières dont on a le chemin.
@@ -75,7 +74,7 @@ public class InterventionsPolicieresReader {
                                     champs[3], champs[4]);
 
                     interventions.add( unObjetInterventionPoliciere );
-                    GestionDateIntervention.gererErreurDateIntervention (nomFichier, numeroDeLigne, unObjetInterventionPoliciere
+                    GestionDateIntervention.gererDateHorsLimite(nomFichier, numeroDeLigne, unObjetInterventionPoliciere
                             .getDate());
                     GestionHeureIntervention.gererErreurFormatHeure (nomFichier, numeroDeLigne, unObjetInterventionPoliciere
                             .getHeure());

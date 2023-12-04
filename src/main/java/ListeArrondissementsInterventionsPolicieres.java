@@ -3,8 +3,8 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * Cette classe est une représentation d'un objet Intervention Policiere qui contient des informations,
- * telles que la date, l'heure, le parc, l'arrondissement et la description.
+ * La classe ListeArrondissementsInterventionsPolicieres fournit une méthode pour extraire et trier
+ * les arrondissements à partir d'une liste d'objets InterventionPoliciere.
  *
  * @Author: Eglantine Clervil, Minh Ha, Farah Bouaiche, Suzanne Kamdem
  * @Courriel: clervil.eglantine_anne@courrier.uqam.ca, ha.le_minh@courrier.uqam.ca, bouaiche.farah@courrier.uqam.ca, kamdem_pouomogne.suzanne_leocadie@courrier.uqam.ca
@@ -13,19 +13,6 @@ import java.util.Set;
  */
 
 public class ListeArrondissementsInterventionsPolicieres {
-
-    private ArrayList<String> listeArrondissements;
-
-    /**
-     * Construction de la classe ListeArrondissementsInterventionsPolicieres qui prend 1 paramètre pour initialiser les
-     * propriétés de l'objet.
-     *
-     * @param listeArrondissements La liste des arrondissements qu'il y a eux lieux dans les arrondissements.
-     */
-    public ListeArrondissementsInterventionsPolicieres( ArrayList<String> listeArrondissements ) {
-
-        this.listeArrondissements = listeArrondissements;
-    }
 
     /**
      * La méthode parcourt la liste d'objets InterventionPoliciere et ajoute tous les arrondissements dans une liste.
