@@ -1,37 +1,38 @@
+import org.json.simple.parser.ParseException;
+
 import java.io.IOException;
 import java.util.ArrayList;
 
 public class Main {
 
-    public static void main(String[] args) throws IOException {
-
+    public static void main(String[] args) throws IOException, ParseException {
+        Traducteur traducteur = TraducteurSingleton.getInstance();
         boolean estAnglais = args[0].equals("--english");
-        System.out.println("estAnglais:" + estAnglais);
-        TraducteurSingleton.getInstance()
-                .setLangueEnCours(estAnglais ? Traducteur.ANGLAIS : Traducteur.FRANCAIS);
+        // Si le logiciel est exécuté en anglais, alors, le fichier d'entrée sera à l'index 1,
+        // sinon, à l'index 0 de la ligne de commande
+        int indexCheminFichiers = estAnglais ? 1 : 0;
+        traducteur.setLangueEnCours(estAnglais ? Traducteur.ANGLAIS : Traducteur.FRANCAIS);
 
-        // Il faut entrer le fichier d'entrée et de sortie en ligne de commande.
-        if( args.length < 2) {
-            throw new ArrayIndexOutOfBoundsException(TraducteurSingleton.getInstance().traduire("nombreInterventions"));
-
-//            throw new ArrayIndexOutOfBoundsException("Erreur : Veuillez spécifier les emplacements des fichiers d'entrée et de sortie." +
-//                    "Veuillez utiliser la commande suivante dans la ligne de commande : " +
-//                    "java -jar target/inf2050-sprint-1.0-jar-with-dependencies.jar <chemin_fichier_entree> <chemin_fichier_sortie>" +
-//                    "Remplacez <chemin_fichier_entree> par le chemin absolu ou relatif, sans espace, de votre fichier CSV d'entrée et " +
-//                    "<nom_fichier_sortie> par le chemin absolu ou relatif de votre fichier CSV de sortie.");
-
-
+        // Si le logiciel est exécuté en anglais
+        if (args.length < 2) {
+            throw new ArrayIndexOutOfBoundsException(traducteur.traduire("erreurNombreParametresInvalide"));
         }
 
-        String cheminFichierEntree = args[1];
-        String cheminFichierSortie = args[2];
+        // Si le logiciel est exécuté en français
+        if (estAnglais && args.length < 3) {
+            throw new ArrayIndexOutOfBoundsException(traducteur.traduire("erreurNombreParametresInvalide"));
+        }
 
-        traiterInterventionsPolicieres( cheminFichierEntree, cheminFichierSortie );
+        String cheminFichierEntree = args[indexCheminFichiers];
+        String cheminFichierSortie = args[indexCheminFichiers + 1];
 
+
+        traiterInterventionsPolicieres(cheminFichierEntree, cheminFichierSortie);
     }
 
+
     public static void traiterInterventionsPolicieres( String cheminFichierEntree, String cheminFichierSortie )
-            throws IOException {
+            throws IOException, ParseException {
 
         ArrayList<InterventionPoliciere> interventions = InterventionsPolicieresReader
                 .creerListeInterventionsPolicieres (cheminFichierEntree );
@@ -41,13 +42,13 @@ public class Main {
                 .remplirListeArrondissements(interventions);
 
         // On compare la liste des arrondissements du fichier d'entrée avec le fichier Json des arrondissements
-        GestionDonneesAvecFichierJson.gererArrondissementsDeMontrealInvalides
+        GestionDonneesAvecFichiersJson.gererArrondissementsDeMontrealInvalides
                 (tousLesArrondissements);
 
         ArrayList<String> toutesLesInterventions = ListeDescriptionInterventionPoliciere
                 .remplirListeInterventionsPolicieres(interventions);
 
-        GestionDonneesAvecFichierJson.gererDescriptionInterventionsInvalides(toutesLesInterventions);
+        GestionDonneesAvecFichiersJson.gererDescriptionInterventionsInvalides(toutesLesInterventions);
 
         ArrayList<Arrondissement> listeParcsInfractions = ListeParcsParArrondissement
                 .remplirListeParcsParArrondissements( interventions,tousLesArrondissements );
@@ -58,8 +59,9 @@ public class Main {
     }
 
     private static void ecrireStatistiquesInterventionsParArrondissement(String cheminFichierSortie, ArrayList<Arrondissement> listeParcsInfractions) {
-        String premiereLigne = "Arrondissement, Nombre d'interventions, Nombre de parcs" ;
-        InterventionsPolicieresWriter.ecrireFichierSortie (cheminFichierSortie,premiereLigne);
+        //String premiereLigne = "Arrondissement, Nombre d'interventions, Nombre de parcs" ;
+        String enTeteCsv = TraducteurSingleton.getInstance().traduire("enTeteCsv");
+        InterventionsPolicieresWriter.ecrireFichierSortie (cheminFichierSortie, enTeteCsv);
 
         // On calcule le nombre de parcs et d'infractions selon un arrondissement donné et on affiche dans
         // le fichier de sortie
