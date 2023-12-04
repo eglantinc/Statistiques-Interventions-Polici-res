@@ -3,7 +3,6 @@ import java.time.format.DateTimeParseException;
 
 public class GestionDateIntervention {
 
-    private static final Traducteur traducteur = new Traducteur();
 
     /**
      * Vérifie que la date de l'intervention est valide, qu'elle est postérieure à la date actuelle
@@ -13,7 +12,7 @@ public class GestionDateIntervention {
      * @param dateInterventionString La chaîne de caractères représentant la date d'intervention.
      * @throws InformationInvalideDansLeFichierEntree Si la date est invalide ou antérieure à la date actuelle.
      */
-    public static void gererErreurDateIntervention(String nomFichier, int compteurLigne, String dateInterventionString)
+    public static void gererDateHorsLimite(String nomFichier, int compteurLigne, String dateInterventionString)
             throws InformationInvalideDansLeFichierEntree {
 
         LocalDate dateCourante = LocalDate.now();
@@ -25,7 +24,7 @@ public class GestionDateIntervention {
             if( (LocalDate.parse(dateInterventionString).isAfter(dateCourante ) ) ) {
 
                 throw new InformationInvalideDansLeFichierEntree(
-                        TraducteurSingleton.getInstance().traduire(("erreurDateInvalide"), nomFichier,
+                        TraducteurSingleton.getInstance().traduire(("erreurDateHorsLimite"), nomFichier,
                                 compteurLigne, dateInterventionString));
             }
         }
