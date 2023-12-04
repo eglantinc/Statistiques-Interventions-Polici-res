@@ -38,7 +38,7 @@ triés en ordre alphabétique, avec le nombre d'interventions policières enregi
         Remplacez <chemin_fichier_entree> par le chemin absolu ou relatif, sans espace, de votre fichier CSV d'entrée 
         et <chemin_fichier_sortie> par le chemin absolu ou relatif de votre fichier CSV de sortie.
         
-        4.1. Il vous est aussi, d'autant plus de travaillez avec la version anglaise du logiciel, 
+        4.1. Il est aussi, d'autant plus, possible de travaillez avec la version anglaise du logiciel, 
              Utiliserez alors la commande suivante : 
 
              java -jar target/inf2050-sprint-1.0-jar-with-dependencies.jar --english <chemin_fichier_entree> <chemin_fichier_sortie> 
