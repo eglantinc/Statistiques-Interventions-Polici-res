@@ -15,12 +15,12 @@ public class Main {
 
         // Si le logiciel est exécuté en anglais
         if (args.length < 2) {
-            throw new ArrayIndexOutOfBoundsException(traducteur.traduire("erreurNombreParametresInvalide"));
+            throw new ArrayIndexOutOfBoundsException(traducteur.traduire("erreurNombreParametresInvalides"));
         }
 
         // Si le logiciel est exécuté en français
         if (estAnglais && args.length < 3) {
-            throw new ArrayIndexOutOfBoundsException(traducteur.traduire("erreurNombreParametresInvalide"));
+            throw new ArrayIndexOutOfBoundsException(traducteur.traduire("erreurNombreParametresInvalides"));
         }
 
         String cheminFichierEntree = args[indexCheminFichiers];
