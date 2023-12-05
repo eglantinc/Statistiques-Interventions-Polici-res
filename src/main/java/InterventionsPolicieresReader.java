@@ -74,7 +74,7 @@ public class InterventionsPolicieresReader {
                                     champs[3], champs[4]);
 
                     interventions.add( unObjetInterventionPoliciere );
-                    GestionDateIntervention.gererDateHorsLimite(nomFichier, numeroDeLigne, unObjetInterventionPoliciere
+                    GestionDateIntervention.gererErreurDate(nomFichier, numeroDeLigne, unObjetInterventionPoliciere
                             .getDate());
                     GestionHeureIntervention.gererErreurFormatHeure (nomFichier, numeroDeLigne, unObjetInterventionPoliciere
                             .getHeure());
