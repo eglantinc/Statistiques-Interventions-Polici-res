@@ -24,7 +24,7 @@ public class GestionDateIntervention {
      * @param dateInterventionString La chaîne de caractères représentant la date d'intervention.
      * @throws InformationInvalideDansLeFichierEntree Si la date est invalide ou postérieure à la date actuelle.
      */
-    public static void gererDateHorsLimite(String nomFichier, int compteurLigne, String dateInterventionString)
+    public static void gererErreurDate(String nomFichier, int compteurLigne, String dateInterventionString)
             throws InformationInvalideDansLeFichierEntree {
 
         LocalDate dateCourante = LocalDate.now();
