@@ -48,10 +48,6 @@ public class InterventionsPolicieresReader {
      * @throws RuntimeException Si une erreur d'entrée/sortie (IOException) survient pendant la lecture du fichier.
      */
     public static ArrayList<InterventionPoliciere> creerListeInterventionsPolicieres( String cheminFichier ) {
-        // Récupérer uniquement le nom du fichier
-
-        // TODO: Rendre methode plus courte
-        //String nomFichier = Paths.get(cheminFichier).getFileName().toString();
 
         GestionChampsVides gestionnaireChampsVide = new GestionChampsVides(cheminFichier, PREMIERE_LIGNE);
 
@@ -63,7 +59,7 @@ public class InterventionsPolicieresReader {
             boolean estEntete = true;
 
             while( ( ligne = lecteur.readLine()) != null ) {
-                gererEnTeteFichierCsv(ligne, estEntete);
+                GestionEnTeteFichierEntree.gererEnTeteFichierCsv(ligne, estEntete);
                 estEntete = false;
 
                 if( numeroDeLigne > 1 ) {
@@ -82,34 +78,6 @@ public class InterventionsPolicieresReader {
         return interventions;
     }
 
-
-
-    // TODO: Faire une autre classe pour gerer en tete
-    // TODO: Ajouter les nouveaux tests dans plan de test
-
-    private static void gererEnTeteFichierCsv(String ligne, boolean estEnTete) {
-        if (estEnTete) {
-            // Supprime le caractère de marqueur d'ordre des octets (BOM) '\uFEFF'
-            ligne = ligne.replace("\uFEFF", "");
-            String[] premiereLigneLu = gererChampVideDansEntete(ligne);
-
-            for (int k = 0; k < PREMIERE_LIGNE.length; k++) {
-                if (!PREMIERE_LIGNE[k].equals(premiereLigneLu[k])) {
-                    throw new InformationInvalideDansLeFichierEntree(TraducteurSingleton.getInstance()
-                            .traduire("erreurNombreChampEnTete", premiereLigneLu[k]));
-                }
-            }
-        }
-    }
-
-    private static String[] gererChampVideDansEntete(String ligne) {
-        String[] premiereLigneLu = ligne.split(",");
-
-        if (premiereLigneLu.length != PREMIERE_LIGNE.length) {
-            throw new ChampVideDansFichierEntree(TraducteurSingleton.getInstance().traduire("erreurEnTeteChampInapproprie"));
-        }
-        return premiereLigneLu;
-    }
 
     private static void gererLesErreursTemporelles(String nomFichier, InterventionPoliciere unObjetInterventionPoliciere) {
         GestionDateIntervention.gererErreurDate(nomFichier, numeroDeLigne, unObjetInterventionPoliciere
