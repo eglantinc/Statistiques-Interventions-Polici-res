@@ -1,16 +1,20 @@
 import static org.junit.jupiter.api.Assertions.*;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 public class GestionDateInterventionTest {
+    private Traducteur traducteur;
+
+    @BeforeEach
+    void setUp() {
+        traducteur = TraducteurSingleton.getInstance();
+        traducteur.setLangueEnCours(Traducteur.FRANCAIS);
+    }
 
 
     @Test
-
     void testGestionDateIntervention() {
-        Traducteur traducteur = TraducteurSingleton.getInstance();
-        traducteur.setLangueEnCours(Traducteur.FRANCAIS);
-
         String dateFuture = "2024-12-01";
         String nomFichier = "test_cas_attendu.csv";
         int numeroDeLigne = InterventionsPolicieresReader.numeroDeLigne;
@@ -22,8 +26,6 @@ public class GestionDateInterventionTest {
 
     @Test
     void testGestionDateIntervention4() {
-        Traducteur traducteur = TraducteurSingleton.getInstance();
-        traducteur.setLangueEnCours(Traducteur.FRANCAIS);
 
         String nomFichier = "test7.csv";
 
@@ -33,9 +35,6 @@ public class GestionDateInterventionTest {
 
     @Test
     void testGestionDateIntervention5() {
-        Traducteur traducteur = TraducteurSingleton.getInstance();
-        traducteur.setLangueEnCours(Traducteur.FRANCAIS);
-
         String nomFicher = "test1.csv";
 
         assertThrows(InformationInvalideDansLeFichierEntree.class, () ->
@@ -44,8 +43,6 @@ public class GestionDateInterventionTest {
 
     @Test
     void testGestionDateIntervention6() {
-        Traducteur traducteur = TraducteurSingleton.getInstance();
-        traducteur.setLangueEnCours(Traducteur.FRANCAIS);
         String nomFichier = "test_cas_attendu.csv";
 
         assertThrows(InformationInvalideDansLeFichierEntree.class, () ->

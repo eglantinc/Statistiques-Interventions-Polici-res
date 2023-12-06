@@ -44,7 +44,7 @@ public class JsonParser {
                 informationSurInterventionDansJson.add((String) objetJava);
             }
 
-        } catch (IOException e) {
+        } catch ( IOException | ParseException e ) {
             // En cas d'erreur lors de la lecture du fichier, lance une exception avec un message traduit
             TraducteurSingleton.getInstance().traduire("erreurLectureFichier", cheminFichierJson);
         }

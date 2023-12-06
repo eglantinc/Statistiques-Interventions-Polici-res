@@ -1,12 +1,20 @@
 import static org.junit.jupiter.api.Assertions.*;
+
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 public class GestionHeureInterventionTest {
 
+    private Traducteur traducteur;
+
+    @BeforeEach
+    void setUp() {
+        traducteur = TraducteurSingleton.getInstance();
+        traducteur.setLangueEnCours(Traducteur.FRANCAIS);
+    }
+
     @Test
     void GestionHeureInterventionTest( ) {
-        Traducteur traducteur = TraducteurSingleton.getInstance();
-        traducteur.setLangueEnCours(Traducteur.FRANCAIS);
         String nomFichier = "nomFichier";
         int ligne = 2;
         // Format nul, une exception devrait être levée.
@@ -16,8 +24,6 @@ public class GestionHeureInterventionTest {
 
     @Test
     void GestionHeureInterventionTest2( ) {
-        Traducteur traducteur = TraducteurSingleton.getInstance();
-        traducteur.setLangueEnCours(Traducteur.FRANCAIS);
         String nomFichier = "nomFichier";
         int ligne = 2;
         // Heure en dehors de la plage valide (24:00)
@@ -28,8 +34,6 @@ public class GestionHeureInterventionTest {
     }
     @Test
     void GestionHeureInterventionTest3( ){
-        Traducteur traducteur = TraducteurSingleton.getInstance();
-        traducteur.setLangueEnCours(Traducteur.FRANCAIS);
         String nomFichier = "nomFichier";
         int ligne = 2;
         // Heure invalide (format incorrect)
