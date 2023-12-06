@@ -8,7 +8,7 @@ public class GestionEnTeteFichierEntree {
             for (int k = 0; k < InterventionsPolicieresReader.PREMIERE_LIGNE.length; k++) {
                 if (!InterventionsPolicieresReader.PREMIERE_LIGNE[k].equals(premiereLigneLu[k])) {
                     throw new InformationInvalideDansLeFichierEntree(TraducteurSingleton.getInstance()
-                            .traduire("erreurNombreChampEnTete", premiereLigneLu[k]));
+                            .traduire("erreurEnTeteChampInapproprie", premiereLigneLu[k], k+1));
                 }
             }
         }
@@ -18,7 +18,7 @@ public class GestionEnTeteFichierEntree {
         String[] premiereLigneLu = ligne.split(",");
 
         if (premiereLigneLu.length != InterventionsPolicieresReader.PREMIERE_LIGNE.length) {
-            throw new ChampVideDansFichierEntree(TraducteurSingleton.getInstance().traduire("erreurEnTeteChampInapproprie"));
+            throw new ChampVideDansFichierEntree(TraducteurSingleton.getInstance().traduire("erreurNombreChampEnTete"));
         }
         return premiereLigneLu;
     }
