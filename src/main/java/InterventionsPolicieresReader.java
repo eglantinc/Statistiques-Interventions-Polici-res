@@ -3,7 +3,6 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 /**
  * Cette classe permet de lire des données d'un fichier CSV d'interventions policières dont on a le chemin.
@@ -50,7 +49,9 @@ public class InterventionsPolicieresReader {
      */
     public static ArrayList<InterventionPoliciere> creerListeInterventionsPolicieres( String cheminFichier ) {
         // Récupérer uniquement le nom du fichier
-        String nomFichier = Paths.get(cheminFichier).getFileName().toString();
+
+        // TODO: Rendre methode plus courte
+        //String nomFichier = Paths.get(cheminFichier).getFileName().toString();
 
         GestionChampsVides gestionnaireChampsVide = new GestionChampsVides(cheminFichier, PREMIERE_LIGNE);
 
@@ -59,20 +60,19 @@ public class InterventionsPolicieresReader {
         try( BufferedReader lecteur = new BufferedReader(new FileReader(cheminFichier ) ) ) {
 
             String ligne;
+            boolean estEntete = true;
 
             while( ( ligne = lecteur.readLine()) != null ) {
-
-                gererEnTeteFichierCsv(ligne);
+                gererEnTeteFichierCsv(ligne, estEntete);
+                estEntete = false;
 
                 if( numeroDeLigne > 1 ) {
 
                     String[] champs = ligne.split("," );
 
                     gererLesChampsVidesFichierEntree(champs, gestionnaireChampsVide);
-
                     InterventionPoliciere unObjetInterventionPoliciere = creerObjetInterventionPoliciere(champs, interventions);
-
-                    gererLesErreursTemporelles(nomFichier, unObjetInterventionPoliciere);
+                    gererLesErreursTemporelles(Paths.get(cheminFichier).getFileName().toString(), unObjetInterventionPoliciere);
                 }
                 numeroDeLigne++;
             }
@@ -84,14 +84,31 @@ public class InterventionsPolicieresReader {
 
 
 
-    private static void gererEnTeteFichierCsv(String ligne) {
-        // TODO: Refactor pour mieux gérer
-        String[] premiereLigneLu = ligne.split("," );
-        if (premiereLigneLu.length < 5) {
-            throw new RuntimeException("Invalide");
-        } else if (!(Arrays.equals(premiereLigneLu, PREMIERE_LIGNE))) {
-            throw new RuntimeException("Invalide");
+    // TODO: Faire une autre classe pour gerer en tete
+    // TODO: Ajouter les nouveaux tests dans plan de test
+
+    private static void gererEnTeteFichierCsv(String ligne, boolean estEnTete) {
+        if (estEnTete) {
+            // Supprime le caractère de marqueur d'ordre des octets (BOM) '\uFEFF'
+            ligne = ligne.replace("\uFEFF", "");
+            String[] premiereLigneLu = gererChampVideDansEntete(ligne);
+
+            for (int k = 0; k < PREMIERE_LIGNE.length; k++) {
+                if (!PREMIERE_LIGNE[k].equals(premiereLigneLu[k])) {
+                    throw new InformationInvalideDansLeFichierEntree(TraducteurSingleton.getInstance()
+                            .traduire("erreurNombreChampEnTete", premiereLigneLu[k]));
+                }
+            }
         }
+    }
+
+    private static String[] gererChampVideDansEntete(String ligne) {
+        String[] premiereLigneLu = ligne.split(",");
+
+        if (premiereLigneLu.length != PREMIERE_LIGNE.length) {
+            throw new ChampVideDansFichierEntree(TraducteurSingleton.getInstance().traduire("erreurEnTeteChampInapproprie"));
+        }
+        return premiereLigneLu;
     }
 
     private static void gererLesErreursTemporelles(String nomFichier, InterventionPoliciere unObjetInterventionPoliciere) {
