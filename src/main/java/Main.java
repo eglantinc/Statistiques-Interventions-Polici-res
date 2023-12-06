@@ -50,8 +50,11 @@ public class Main {
 
         GestionDonneesAvecFichiersJson.gererDescriptionInterventionsInvalides(toutesLesInterventions);
 
-        ArrayList<Arrondissement> listeParcsInfractions = ListeParcsParArrondissement
-                .remplirListeParcsParArrondissements( interventions,tousLesArrondissements );
+        ListeParcsParArrondissement listeParcsParArrondissement = new ListeParcsParArrondissement();
+        ArrayList<Arrondissement> listeParcsInfractions = listeParcsParArrondissement.remplirListeParcsParArrondissements(interventions, tousLesArrondissements);
+
+//        ArrayList<Arrondissement> listeParcsInfractions = ListeParcsParArrondissement
+//                .remplirListeParcsParArrondissements( interventions,tousLesArrondissements );
 
         // Premiere ligne du fichier de sortie à ne pas traiter.
         ecrireStatistiquesInterventionsParArrondissement(cheminFichierSortie, listeParcsInfractions);

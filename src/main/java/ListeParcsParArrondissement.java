@@ -25,7 +25,7 @@ public class ListeParcsParArrondissement {
      * @return Une liste d'objet Arrondissement contenant les informations sur les parcs et les infractions
      *         à chaque arrondissement.
      */
-    public static ArrayList<Arrondissement> remplirListeParcsParArrondissements( ArrayList<InterventionPoliciere> interventions, ArrayList<String> listeArrondissements ) {
+    public ArrayList<Arrondissement> remplirListeParcsParArrondissements( ArrayList<InterventionPoliciere> interventions, ArrayList<String> listeArrondissements ) {
 
         ArrayList<String> listeInfractions = new ArrayList<>();
         ArrayList<String> listeParcs = new ArrayList<>();
