@@ -13,12 +13,12 @@ public class Main {
         int indexCheminFichiers = estAnglais ? 1 : 0;
         traducteur.setLangueEnCours(estAnglais ? Traducteur.ANGLAIS : Traducteur.FRANCAIS);
 
-        // Si le logiciel est exécuté en anglais
+        // Si le logiciel est exécuté en français
         if (args.length < 2) {
             throw new ArrayIndexOutOfBoundsException(traducteur.traduire("erreurNombreParametresInvalides"));
         }
 
-        // Si le logiciel est exécuté en français
+        // Si le logiciel est exécuté en anglais
         if (estAnglais && args.length < 3) {
             throw new ArrayIndexOutOfBoundsException(traducteur.traduire("erreurNombreParametresInvalides"));
         }
