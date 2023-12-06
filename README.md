@@ -279,8 +279,41 @@ triés en ordre alphabétique, avec le nombre d'interventions policières enregi
         java -jar target/inf2050-sprint-1.0-jar-with-dependencies.jar <input_file_path> <output_file_path>. 
         Replace <input_file_path> by the path, without space, of your input CSV file and <input_file_path> with the path 
         and name for your output CSV file.
+
+    12- Erreur de nombre de champs inattendus dans l'en-tête du fichier d'entrée
+
+        Si le nombre de colonnes dans l'en-tête est incorrect, le programme signalera une erreur comme suit :
         
-    
+        Erreur ! Le nombre de colonnes dans l'en-tête ne correspond pas à celui attendu. 
+        Veuillez vous assurer que l'en-tête de votre fichier comporte les 5 champs suivants, dans l'ordre 
+        indiqué et sans espaces blancs : 'Date', 'Heure', 'Parc', 'Arrondissement', 'Description'.
+        
+        Si votre programme est lancé avec le paramètre '--english' :
+        
+        The number of columns in the header does not match the expected count. 
+        Please ensure that your file header contains the following 5 fields, 
+        in the specified order and without any white spaces: 'Date', 'Heure', 'Parc', 'Arrondissement', 'Description'.
+
+    13- Erreur de champ inapproprié dans l'en-tête du fichier d'entrée
+        
+        Si un des champ dans le fichier d'entrée csv ne correspond pas aux champs suivants
+        'Date', 'Heure', 'Parc', 'Arrondissement', 'Description' dans l'ordre de leur apparition
+        Le programme signalera une erreur comme suit:
+        
+        Erreur dans le fichier 'nom_fichier'. L'expression 'champ_inapproprié' à la colonne 'colonne' n'est pas reconnue comme 
+        un champ d'en-tête valide ! Veuillez vous assurer que l'en-tête de votre fichier comporte les 
+        5 champs suivants, dans l'ordre indiqué et sans espaces blancs : 'Date', 'Heure', 'Parc', 'Arrondissement', 'Description'.
+        
+        Si votre programme est lancé avec le paramètre '--english' :
+        
+        Error in file 'nom_du_fichier'. The expression 'champ_inapproprié' in column 'colonne' is not recognized as a valid header field! 
+        Please ensure that your file header contains the following 5 fields, in the specified order and without 
+        any white spaces: 'Date', 'Heure', 'Parc', 'Arrondissement', 'Description'.
+
+        Où 'nom_du_fichier' désigne le nom du fichier d'entrée csv, champ_inapproprié représente le
+        champ qui ne correspond pas aux 5 champs valides et colonne corresponds à la colonne où
+        le champ est invalide.
+
 ## Conclusion
 
 

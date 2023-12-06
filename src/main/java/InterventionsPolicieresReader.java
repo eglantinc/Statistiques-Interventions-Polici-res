@@ -59,7 +59,7 @@ public class InterventionsPolicieresReader {
             boolean estEntete = true;
 
             while( ( ligne = lecteur.readLine()) != null ) {
-                GestionEnTeteFichierEntree.gererEnTeteFichierCsv(ligne, estEntete);
+                GestionEnTeteFichierEntree.gererEnTeteFichierCsv(ligne, estEntete, Paths.get(cheminFichier).getFileName().toString());
                 estEntete = false;
 
                 if( numeroDeLigne > 1 ) {
