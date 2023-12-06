@@ -46,8 +46,16 @@ triés en ordre alphabétique, avec le nombre d'interventions policières enregi
     5. S'il n'y a aucun message d'erreur, le logiciel a bel et bien produit la statistique des interventions policieres par arrondissement.
     
     6. Afin d'afficher le résultat dans le fichier de sortie, vous devez utiliser la commande suivante:
-        Sur macOS : cat <chemin_fichier_sortie>
+        Sur macOS et Linux : cat <chemin_fichier_sortie>
         Sur Windows : type <chemin_fichier_sortie>
+
+        Où <nom_fichier> désigne le chemin de votre fichier de sortie
+    
+    7. Enfin, pour supprimer le contenu de votre fichier de sortie, utilisez la commande suivante:
+        Sur macOs et Linux : echo -n > <chemin_fichier_sortie>
+        Sur windows : echo. > <chemin_fichier_sortie>
+        
+        Où <nom_fichier> désigne le chemin de votre fichier de sortie.
         
         
 ## Contribution
