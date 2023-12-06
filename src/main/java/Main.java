@@ -53,7 +53,7 @@ public class Main {
         ArrayList<Arrondissement> listeParcsInfractions = ListeParcsParArrondissement
                 .remplirListeParcsParArrondissements( interventions,tousLesArrondissements );
 
-        // Premiere ligne du fichier de sortie a ne pas traiter.
+        // Premiere ligne du fichier de sortie à ne pas traiter.
         ecrireStatistiquesInterventionsParArrondissement(cheminFichierSortie, listeParcsInfractions);
 
     }
