@@ -33,7 +33,8 @@ triés en ordre alphabétique, avec le nombre d'interventions policières enregi
     
     4. Vous allez ensuite pouvoir bien exécuter votre fichier jar suivant la commande suivante:
 
-        java -jar target/inf2050-sprint-1.0-jar-with-dependencies.jar <chemin_fichier_entree> <chemin_fichier_sortie> 
+        Sur macOS et Linux : java -jar target/inf2050-sprint-1.0-jar-with-dependencies.jar <chemin_fichier_entree> <chemin_fichier_sortie> 
+        Sur Windows: java -jar .\target\inf2050-sprint-1.0-jar-with-dependencies.jar <chemin_fichier_entree> <chemin_fichier_sortie> 
         
         Remplacez <chemin_fichier_entree> par le chemin absolu ou relatif, sans espace, de votre fichier CSV d'entrée 
         et <chemin_fichier_sortie> par le chemin absolu ou relatif de votre fichier CSV de sortie.
@@ -41,7 +42,8 @@ triés en ordre alphabétique, avec le nombre d'interventions policières enregi
         4.1. Il est aussi, d'autant plus, possible de travailler avec la version anglaise du logiciel, 
              Utiliserez alors la commande suivante : 
 
-             java -jar target/inf2050-sprint-1.0-jar-with-dependencies.jar --english <chemin_fichier_entree> <chemin_fichier_sortie> 
+             Sur macOS : java -jar target/inf2050-sprint-1.0-jar-with-dependencies.jar --english <chemin_fichier_entree> <chemin_fichier_sortie>
+             Sur Windows : java -jar .\target\inf2050-sprint-1.0-jar-with-dependencies.jar --english <chemin_fichier_entree> <chemin_fichier_sortie>
 
     5. S'il n'y a aucun message d'erreur, le logiciel a bel et bien produit la statistique des interventions policieres par arrondissement.
     
