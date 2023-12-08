@@ -25,7 +25,7 @@ public class DiskFile {
 
     public static String loadFileIntoString( String cheminFichier ) throws IOException {
 
-        return IOUtils.toString(new FileInputStream(cheminFichier ), StandardCharsets.UTF_8 );
+        return IOUtils.toString( new FileInputStream( cheminFichier ), StandardCharsets.UTF_8 );
     }
 
     public static void saveStringIntoFile( String cheminFichier, String contenu ) throws IOException {

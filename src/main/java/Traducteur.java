@@ -16,14 +16,9 @@ public class Traducteur {
     public static final Locale ANGLAIS = Locale.ENGLISH;
     public static final Locale FRANCAIS = Locale.FRENCH;
 
-    public Locale getLangueEnCours() {
-        return langueEnCours;
-    }
-
     public void setLangueEnCours(Locale langueEnCours) {
         this.langueEnCours = langueEnCours;
     }
-
 
     /**
      * La méthode traduire de la classe Traducteur permet de traduire un message en utilisant une clé spécifiée
@@ -40,8 +35,6 @@ public class Traducteur {
         // Substitue les arguments dans le message (s'il y en a) et retourne le résultat
         return String.format(message, args);
     }
-
-
 }
 
 

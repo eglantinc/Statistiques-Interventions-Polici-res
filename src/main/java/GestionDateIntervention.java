@@ -12,16 +12,18 @@ import java.time.format.DateTimeParseException;
  * @Groupe: 30
  *
  */
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
+
 public class GestionDateIntervention {
 
-
     /**
-     * Vérifie que la date de l'intervention est valide, qu'elle est antérieure à la date actuelle
-     * et qu'elle suit le format ISO 8601 (AAAA-MM-JJ).
+     * Vérifie que la date de l'intervention est valide, antérieure à la date actuelle,
+     * et suit le format ISO 8601 (AAAA-MM-JJ).
      *
-     * @param nomFichier Le nom du fichier contenant les informations.
-     * @param compteurLigne La ligne où se trouve l'erreur.
-     * @param dateInterventionString La chaîne de caractères représentant la date d'intervention.
+     * @param nomFichier              Le nom du fichier contenant les informations.
+     * @param compteurLigne           La ligne où se trouve l'erreur.
+     * @param dateInterventionString  La chaîne de caractères représentant la date d'intervention.
      * @throws InformationInvalideDansLeFichierEntree Si la date est invalide ou postérieure à la date actuelle.
      */
     public static void gererErreurDate(String nomFichier, int compteurLigne, String dateInterventionString)
@@ -29,14 +31,13 @@ public class GestionDateIntervention {
 
         LocalDate dateCourante = LocalDate.now();
 
-        if( dateInterventionString != null ) {
-
+        if (dateInterventionString != null) {
             gererErreurFormatDate(nomFichier, compteurLigne, dateInterventionString);
 
-            if( (LocalDate.parse(dateInterventionString).isAfter(dateCourante ) ) ) {
-
+            LocalDate dateIntervention = LocalDate.parse(dateInterventionString);
+            if (dateIntervention.isAfter(dateCourante)) {
                 throw new InformationInvalideDansLeFichierEntree(
-                        TraducteurSingleton.getInstance().traduire(("erreurDateHorsLimite"), nomFichier,
+                        TraducteurSingleton.getInstance().traduire("erreurDateHorsLimite", nomFichier,
                                 compteurLigne, dateInterventionString));
             }
         }
@@ -45,24 +46,21 @@ public class GestionDateIntervention {
     /**
      * Vérifie si la chaîne de caractères représentant une date est au format ISO 8601 (AAAA-MM-JJ).
      *
-     * @param nomDuFichier Le nom du fichier contenant les informations.
-     * @param compteurDeLigne La ligne où se trouve l'erreur.
-     * @param dateInterventionString La chaîne de caractères représentant la date.
+     * @param nomDuFichier              Le nom du fichier contenant les informations.
+     * @param compteurDeLigne           La ligne où se trouve l'erreur.
+     * @param dateInterventionString    La chaîne de caractères représentant la date.
      * @throws InformationInvalideDansLeFichierEntree Si le format de la date est invalide.
      */
     private static void gererErreurFormatDate(String nomDuFichier, int compteurDeLigne,
                                               String dateInterventionString) {
-
         try {
             // Tente de parser la chaîne en une LocalDate au format ISO 8601
             LocalDate.parse(dateInterventionString);
-
         } catch (DateTimeParseException exception) {
             // Lance une exception si le format de la date est invalide
-            throw new InformationInvalideDansLeFichierEntree(TraducteurSingleton
-                    .getInstance().traduire("erreurFormatDateInvalide",
+            throw new InformationInvalideDansLeFichierEntree(
+                    TraducteurSingleton.getInstance().traduire("erreurFormatDateInvalide",
                             nomDuFichier, compteurDeLigne, dateInterventionString));
         }
     }
-
 }

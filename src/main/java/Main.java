@@ -24,53 +24,53 @@ public class Main {
     }
 
 
-
-    public static void traiterInterventionsPolicieres( String cheminFichierEntree, String cheminFichierSortie )
-            throws IOException, ParseException {
+    /**
+     * Cette méthode traite les interventions policières à partir d'un fichier d'entrée CSV
+     * et génère des statistiques qui sont ensuite écrites dans un fichier de sortie CSV.
+     *
+     * @param cheminFichierEntree Le chemin du fichier CSV d'entrée contenant les données d'interventions policières.
+     * @param cheminFichierSortie Le chemin du fichier CSV de sortie où seront écrites les statistiques.
+     *
+     */
+    public static void traiterInterventionsPolicieres(String cheminFichierEntree, String cheminFichierSortie) {
         InterventionsPolicieresReader interventionsPolicieresReader = new InterventionsPolicieresReader(cheminFichierEntree);
-        ArrayList<InterventionPoliciere> interventions = interventionsPolicieresReader
-                .lireInterventionsPolicieres();
+        ArrayList<InterventionPoliciere> interventions = interventionsPolicieresReader.lireInterventionsPolicieres();
 
-        ArrayList<String> tousLesArrondissements = ListeArrondissementsInterventionsPolicieres
-                .remplirListeArrondissements(interventions);
+        ArrayList<String> tousLesArrondissements = ListeArrondissementsInterventionsPolicieres.remplirListeArrondissements(interventions);
 
-        GestionDonneesAvecFichiersJson.gererArrondissementsDeMontrealInvalides
-                (tousLesArrondissements);
+        GestionDonneesAvecFichiersJson.gererArrondissementsDeMontrealInvalides(tousLesArrondissements);
 
-        ArrayList<String> toutesLesInterventions = ListeDescriptionInterventionPoliciere
-                .remplirListeInterventionsPolicieres(interventions);
+        ArrayList<String> toutesLesInterventions = ListeDescriptionInterventionPoliciere.remplirListeInterventionsPolicieres(interventions);
 
         GestionDonneesAvecFichiersJson.gererDescriptionInterventionsInvalides(toutesLesInterventions);
 
-        ArrayList<Arrondissement> listeParcsInfractions = ListeParcsParArrondissement
-                .remplirListeParcsParArrondissements( interventions,tousLesArrondissements );
+        ArrayList<Arrondissement> listeParcsInfractions = ListeParcsParArrondissement.remplirListeParcsParArrondissements(interventions, tousLesArrondissements);
 
         ecrireStatistiquesInterventionsParArrondissement(cheminFichierSortie, listeParcsInfractions);
-
     }
 
+
+    /**
+     * Cette méthode génère des statistiques sur les interventions policières par arrondissement
+     * et écrit ces statistiques dans un fichier de sortie au format CSV.
+     *
+     * @param cheminFichierSortie    Le chemin du fichier CSV de sortie où seront écrites les statistiques.
+     * @param listeParcsInfractions La liste des arrondissements avec les statistiques d'interventions policières.
+     *
+     */
     private static void ecrireStatistiquesInterventionsParArrondissement(String cheminFichierSortie, ArrayList<Arrondissement> listeParcsInfractions) {
         String enTeteCsv = TraducteurSingleton.getInstance().traduire("enTeteCsv");
         InterventionsPolicieresWriter interventionsPolicieresWriter = new InterventionsPolicieresWriter();
-        interventionsPolicieresWriter.ecrireFichierSortie (cheminFichierSortie, enTeteCsv);
+        interventionsPolicieresWriter.ecrireFichierSortie(cheminFichierSortie, enTeteCsv);
 
-        for( Arrondissement uneListeParcsInfractions : listeParcsInfractions) {
-
-            int totalInterventionsParArrondissement = InterventionsPolicieresStats
-                    .calculerNombreInterventions(uneListeParcsInfractions );
-
-            int totalParcsParArrondissement = InterventionsPolicieresStats
-                    .calculerNombreParcs(uneListeParcsInfractions );
-
+        for (Arrondissement uneListeParcsInfractions : listeParcsInfractions) {
+            int totalInterventionsParArrondissement = InterventionsPolicieresStats.calculerNombreInterventions(uneListeParcsInfractions);
+            int totalParcsParArrondissement = InterventionsPolicieresStats.calculerNombreParcs(uneListeParcsInfractions);
             String ligneEcrite = uneListeParcsInfractions.getNomArrondissement()
                     + " , " + totalInterventionsParArrondissement
                     + " , " + totalParcsParArrondissement;
 
-            interventionsPolicieresWriter
-                    .ecrireFichierSortie (cheminFichierSortie,ligneEcrite );
+            interventionsPolicieresWriter.ecrireFichierSortie(cheminFichierSortie, ligneEcrite);
         }
     }
-
 }
-
-

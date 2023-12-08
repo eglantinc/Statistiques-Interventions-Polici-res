@@ -10,19 +10,13 @@ import java.nio.file.Paths;
  */
 public class GestionChampsVides {
 
-    /**
-     * Le nombre attendu de colonnes dans le fichier CSV.
-     */
+    // Le nombre attendu de colonnes dans le fichier CSV.
     public static final int NOMBRE_COLONNES = 5;
 
-    /**
-     * Le chemin du fichier CSV.
-     */
+    // Le chemin du fichier CSV.
     private String fichierCSV;
 
-    /**
-     * La première ligne du fichier CSV.
-     */
+    // La première ligne du fichier CSV.
     private String[] premiereLigne;
 
     /**
@@ -63,7 +57,7 @@ public class GestionChampsVides {
      * @param colonnes      Tableau représentant les colonnes à vérifier.
      * @param numeroDeLigne Le numéro de la ligne associée pour inclure dans le message d'erreur.
      * @throws ArrayIndexOutOfBoundsException Si le nombre de colonnes est différent
-     *                                        du nombre attendu (NOMBRE_COLONNES).
+     *                                       du nombre attendu (NOMBRE_COLONNES).
      */
     public static void compterChampsAttendus(String[] colonnes, int numeroDeLigne) {
         // Vérifier si le nombre de champs est inférieur ou supérieur à celui attendu

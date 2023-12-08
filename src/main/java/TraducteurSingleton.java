@@ -22,5 +22,5 @@ public class TraducteurSingleton {
         }
         return instance;
     }
-
 }
+

@@ -23,7 +23,7 @@ public class GestionEnTeteFichierEntree {
         if (estEnTete) {
             // Supprime le caractère de marqueur d'ordre des octets (BOM) '\uFEFF'
             ligne = ligne.replace("\uFEFF", "");
-            String[] premiereLigneLu = gererChampVideDansEntete(ligne);
+            String[] premiereLigneLu = gererNombreChampEntete(nomFichier, ligne);
 
             for (int k = 0; k < InterventionsPolicieresReader.PREMIERE_LIGNE.length; k++) {
                 if (!InterventionsPolicieresReader.PREMIERE_LIGNE[k].equals(premiereLigneLu[k])) {
@@ -41,12 +41,11 @@ public class GestionEnTeteFichierEntree {
      * @return Un tableau de chaînes représentant les champs de l'en-tête.
      * @throws ChampVideDansFichierEntree Si un champ de l'en-tête est vide.
      */
-    private static String[] gererChampVideDansEntete(String ligne) {
+    private static String[] gererNombreChampEntete(String nomFichier, String ligne) {
         String[] premiereLigneLu = ligne.split(",");
 
-        // TODO : AJOUTER NOM ET AUSSI L'ENDROIT OU C'EST VIDE
         if (premiereLigneLu.length != InterventionsPolicieresReader.PREMIERE_LIGNE.length) {
-            throw new ChampVideDansFichierEntree(TraducteurSingleton.getInstance().traduire("erreurNombreChampEnTete"));
+            throw new ChampVideDansFichierEntree(TraducteurSingleton.getInstance().traduire("erreurNombreChampEnTete", nomFichier));
         }
         return premiereLigneLu;
     }

@@ -20,14 +20,11 @@ public class GestionHeureIntervention {
      * @throws InformationInvalideDansLeFichierEntree Si le format de l'heure est invalide.
      */
     public static void gererErreurFormatHeure(String nomFichier, int numeroLigne, String heureInterventionString) {
-
         try {
             LocalTime.parse(heureInterventionString);
-
         } catch (DateTimeParseException exception) {
             throw new InformationInvalideDansLeFichierEntree(TraducteurSingleton.getInstance()
-                    .traduire("erreurFormatHeureInvalide", nomFichier, numeroLigne,
-                            heureInterventionString));
+                    .traduire("erreurFormatHeureInvalide", nomFichier, numeroLigne, heureInterventionString));
         }
     }
 }

@@ -22,10 +22,9 @@ public class ListeDescriptionInterventionPoliciere {
      * Construction de la classe ListeInterventionsPolicieres qui prend 1 paramètre pour initialiser les propriétés
      * de l'objet.
      *
-     * @param listeInterventions La liste des interventions qu'il y a eux lieux dans les arrondissements.
+     * @param listeInterventions La liste des interventions qu'il y a eu lieu dans les arrondissements.
      */
-    public ListeDescriptionInterventionPoliciere(ArrayList<String> listeInterventions ) {
-
+    public ListeDescriptionInterventionPoliciere(ArrayList<String> listeInterventions) {
         this.listeInterventions = listeInterventions;
     }
 
@@ -35,22 +34,20 @@ public class ListeDescriptionInterventionPoliciere {
      * @return La liste d'interventions.
      */
     public ArrayList<String> getListeInterventions() {
-
         return listeInterventions;
     }
 
     /**
-     * Cette methode remplirListeInterventionsPolicieres() permet de récupérer la liste d'objets provenant de la lecture du
+     * Cette méthode `remplirListeInterventionsPolicieres()` permet de récupérer la liste d'objets provenant de la lecture du
      * fichier d'entrée, créer une liste d'interventions provenant des interventions de cette liste afin de
      * rechercher les infractions identiques. Elle prend en paramètre la liste d'objets InterventionPoliciere et
      * le fichier de sortie.
      *
      * @param interventions La liste d'objets InterventionPoliciere à partir de laquelle on a extrait les
      *                      descriptions d'infractions.
-     * @return              Une liste de descriptions d'infractions sans doublons, triée par ordre alphabétique.
+     * @return Une liste de descriptions d'infractions sans doublons, triée par ordre alphabétique.
      */
-    public static ArrayList<String> remplirListeInterventionsPolicieres( ArrayList<InterventionPoliciere>
-                                                                                 interventions ) {
+    public static ArrayList<String> remplirListeInterventionsPolicieres(ArrayList<InterventionPoliciere> interventions) {
         Set<String> listeDescriptionAvecDoublons = getListeInfractionsAvecDoublons(interventions);
         ArrayList<String> listeDescriptionSansDoublons = new ArrayList<>(listeDescriptionAvecDoublons);
         Collections.sort(listeDescriptionSansDoublons);
@@ -62,14 +59,12 @@ public class ListeDescriptionInterventionPoliciere {
         ArrayList<String> listeInterventionsNonTrieesAvecDoublons = new ArrayList<>();
 
         // On parcourt la liste d'objets provenant de la lecture du fichier d'entrée.
-        for ( InterventionPoliciere interventionPoliciere : interventions) {
-
-            listeInterventionsNonTrieesAvecDoublons.add( interventionPoliciere.getDescription() ) ;
+        for (InterventionPoliciere interventionPoliciere : interventions) {
+            listeInterventionsNonTrieesAvecDoublons.add(interventionPoliciere.getDescription());
         }
         // On enlève les doublons dans la liste
         return new HashSet<>(listeInterventionsNonTrieesAvecDoublons);
     }
-
 }
 
 

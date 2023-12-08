@@ -15,7 +15,7 @@ public class ChampVideDansFichierEntree extends RuntimeException{
      *
      * @param message Le message d'erreur associé à l'exception.
      */
-    public ChampVideDansFichierEntree(String message) {
-        super(message);
+    public ChampVideDansFichierEntree( String message ) {
+        super( message );
     }
 }

@@ -24,7 +24,7 @@ public class InterventionPoliciere {
     private String description;
 
     /**
-     * Constructeur de la classe InterventionPolicere qui prend 5 paramètres pour
+     * Constructeur de la classe InterventionPoliciere qui prend 5 paramètres pour
      * initialiser les propriétés de l'objet.
      *
      * @param date           La date de l'intervention.
@@ -33,14 +33,12 @@ public class InterventionPoliciere {
      * @param arrondissement L'arrondissement où s'est déroulé l'intervention.
      * @param description    La description de l'intervention.
      */
-    public InterventionPoliciere( String date, String heure, String parc, String arrondissement, String description ) {
-
+    public InterventionPoliciere(String date, String heure, String parc, String arrondissement, String description) {
         this.date = date;
         this.heure = heure;
         this.parc = parc;
         this.arrondissement = arrondissement;
         this.description = description;
-
     }
 
     /**
@@ -49,7 +47,6 @@ public class InterventionPoliciere {
      * @return La date de l'intervention.
      */
     public String getDate() {
-
         return date;
     }
 
@@ -59,7 +56,6 @@ public class InterventionPoliciere {
      * @return L'heure de l'intervention.
      */
     public String getHeure() {
-
         return heure;
     }
 
@@ -69,7 +65,6 @@ public class InterventionPoliciere {
      * @return Le parc où s'est déroulé l'intervention.
      */
     public String getParc() {
-
         return parc;
     }
 
@@ -79,7 +74,6 @@ public class InterventionPoliciere {
      * @return L'arrondissement où s'est déroulé l'intervention.
      */
     public String getArrondissement() {
-
         return arrondissement;
     }
 
@@ -89,7 +83,6 @@ public class InterventionPoliciere {
      * @return description de l'intervention.
      */
     public String getDescription() {
-
         return description;
     }
 
@@ -97,10 +90,9 @@ public class InterventionPoliciere {
      * Cette méthode creerUneInterventionPoliciere() permet de créer
      * une instance de l'objet InterventionPoliciere
      */
-    public static InterventionPoliciere creerInstanceInterventionPoliciere( String date, String heure, String parc,
-                                                                            String arrondissement, String description ) {
-
-        return new InterventionPoliciere( date, heure, parc, arrondissement, description );
+    public static InterventionPoliciere creerInstanceInterventionPoliciere(String date, String heure, String parc,
+                                                                           String arrondissement, String description) {
+        return new InterventionPoliciere(date, heure, parc, arrondissement, description);
     }
 
     @Override

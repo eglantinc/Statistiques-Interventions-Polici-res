@@ -18,10 +18,8 @@ public class InterventionsPolicieresStats {
      * @param unArrondissement L'objet Arrondissement pour lequel le nombre d'interventions est calculé.
      * @return Le nombre d'interventions enregistrées pour l'arrondissement spécifié.
      */
-    public static int calculerNombreInterventions( Arrondissement unArrondissement ) {
-
+    public static int calculerNombreInterventions(Arrondissement unArrondissement) {
         ArrayList<String> contientInterventions = unArrondissement.getListeInfractions();
-
         return contientInterventions.size();
     }
 
@@ -31,13 +29,10 @@ public class InterventionsPolicieresStats {
      * @param unArrondissement L'objet Arrondissement pour lequel le nombre de parcs est calculé.
      * @return Le nombre de parcs enregistrés pour l'arrondissement spécifié.
      */
-    public static int calculerNombreParcs( Arrondissement unArrondissement ) {
-
+    public static int calculerNombreParcs(Arrondissement unArrondissement) {
         ArrayList<String> contientParcs = unArrondissement.getListeDeParcs();
-
         return contientParcs.size();
     }
-
 }
 
 

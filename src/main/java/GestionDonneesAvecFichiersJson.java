@@ -12,6 +12,7 @@ import org.json.simple.parser.ParseException;
  * @Code-permanent: CLEE89530109
  * @Groupe: 30
  */
+
 public class GestionDonneesAvecFichiersJson {
 
     /**
@@ -20,25 +21,18 @@ public class GestionDonneesAvecFichiersJson {
      * d'arrondissement invalide, on lance une exception avec un message d'erreur détaillé.
      *
      * @param arrondissementsDuFichierEntree Liste des arrondissements provenant du fichier d'entrée à valider.
-     * @throws IOException En cas d'erreur lors du chargement des informations depuis le fichier JSON.
-     * @throws ParseException En cas d'erreur lors de l'analyse du fichier JSON.
      * @throws InformationInvalideDansLeFichierEntree Si un arrondissement dans le fichier d'entrée n'est pas valide.
      */
-    public static void gererArrondissementsDeMontrealInvalides(ArrayList<String> arrondissementsDuFichierEntree)
-            throws IOException, ParseException {
+    public static void gererArrondissementsDeMontrealInvalides(ArrayList<String> arrondissementsDuFichierEntree) {
 
-        ArrayList<String> arrondissementsDeMontreal = JsonParser
-                .chargerInfosFichierJsonArrayList("fichiers_json/arrondissements.json",
-                        "arrondissements");
+        ArrayList<String> arrondissementsDeMontreal = JsonParser.chargerInfosFichierJsonArrayList(
+                "fichiers_json/arrondissements.json", "arrondissements");
 
         for (String arrondissement : arrondissementsDuFichierEntree) {
-
             if (!arrondissementsDeMontreal.contains(arrondissement)) {
-
-                throw new InformationInvalideDansLeFichierEntree(TraducteurSingleton.getInstance()
-                        .traduire("erreurArrondissementInvalide", arrondissement));
+                throw new InformationInvalideDansLeFichierEntree(
+                        TraducteurSingleton.getInstance().traduire("erreurArrondissementInvalide", arrondissement));
             }
-
         }
     }
 
@@ -48,25 +42,19 @@ public class GestionDonneesAvecFichiersJson {
      * JSON.
      *
      * @param descriptionsDansFichierEntree Liste des interventions provenant du fichier d'entrée à valider.
-     * @throws IOException En cas d'erreur lors du chargement des informations depuis le fichier JSON.
-     * @throws ParseException En cas d'erreur lors de l'analyse du fichier JSON.
      * @throws InformationInvalideDansLeFichierEntree Si une intervention dans le fichier d'entrée n'est pas valide.
      */
-    public static void gererDescriptionInterventionsInvalides(ArrayList<String> descriptionsDansFichierEntree)
-            throws IOException, ParseException {
+    public static void gererDescriptionInterventionsInvalides(ArrayList<String> descriptionsDansFichierEntree) {
 
-        ArrayList<String> descriptionsInterventionsConsidereesValides = JsonParser
-                .chargerInfosFichierJsonArrayList("fichiers_json/intervention_policiere.json",
-                        "intervention_policiere");
+        ArrayList<String> descriptionsInterventionsConsidereesValides = JsonParser.chargerInfosFichierJsonArrayList(
+                "fichiers_json/intervention_policiere.json", "intervention_policiere");
 
         for (String uneDescription : descriptionsDansFichierEntree) {
-
             if (!descriptionsInterventionsConsidereesValides.contains(uneDescription)) {
-
-                throw new InformationInvalideDansLeFichierEntree(TraducteurSingleton.getInstance()
-                        .traduire("erreurDescriptionInterventionInvalide", uneDescription));
+                throw new InformationInvalideDansLeFichierEntree(
+                        TraducteurSingleton.getInstance().traduire("erreurDescriptionInterventionInvalide", uneDescription));
             }
-
         }
     }
 }
+

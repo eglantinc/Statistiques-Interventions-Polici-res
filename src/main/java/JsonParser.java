@@ -16,6 +16,7 @@ import java.util.ArrayList;
  * @Groupe: 30
  */
 public class JsonParser {
+
     /**
      * Charge les informations d'un fichier JSON spécifié dans une ArrayList.
      *
@@ -44,14 +45,12 @@ public class JsonParser {
                 informationSurInterventionDansJson.add((String) objetJava);
             }
 
-        } catch ( IOException | ParseException e ) {
+        } catch (IOException | ParseException e) {
             // En cas d'erreur lors de la lecture du fichier, lance une exception avec un message traduit
-           throw new RuntimeException(TraducteurSingleton.getInstance().traduire("erreurLectureFichier", cheminFichierJson));
+            throw new RuntimeException(TraducteurSingleton.getInstance().traduire("erreurLectureFichier", cheminFichierJson));
         }
         return informationSurInterventionDansJson;
     }
-
-
 }
 
 
