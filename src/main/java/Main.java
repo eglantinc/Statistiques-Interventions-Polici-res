@@ -13,35 +13,27 @@ public class Main {
         int indexCheminFichiers = estAnglais ? 1 : 0;
         traducteur.setLangueEnCours(estAnglais ? Traducteur.ANGLAIS : Traducteur.FRANCAIS);
 
-        // Si le logiciel est exécuté en français
-        if (args.length < 2) {
-            throw new ArrayIndexOutOfBoundsException(traducteur.traduire("erreurNombreParametresInvalides"));
-        }
-
-        // Si le logiciel est exécuté en anglais
-        if (estAnglais && args.length < 3) {
+        if ((estAnglais && args.length < 3) || (!estAnglais && args.length < 2)) {
             throw new ArrayIndexOutOfBoundsException(traducteur.traduire("erreurNombreParametresInvalides"));
         }
 
         String cheminFichierEntree = args[indexCheminFichiers];
         String cheminFichierSortie = args[indexCheminFichiers + 1];
 
-
         traiterInterventionsPolicieres(cheminFichierEntree, cheminFichierSortie);
     }
 
 
+
     public static void traiterInterventionsPolicieres( String cheminFichierEntree, String cheminFichierSortie )
             throws IOException, ParseException {
+        InterventionsPolicieresReader interventionsPolicieresReader = new InterventionsPolicieresReader(cheminFichierEntree);
+        ArrayList<InterventionPoliciere> interventions = interventionsPolicieresReader
+                .lireInterventionsPolicieres();
 
-        ArrayList<InterventionPoliciere> interventions = InterventionsPolicieresReader
-                .creerListeInterventionsPolicieres (cheminFichierEntree );
-
-        // On crée une liste d'arrondissements triés qui seront comparer à la liste d'objets.
         ArrayList<String> tousLesArrondissements = ListeArrondissementsInterventionsPolicieres
                 .remplirListeArrondissements(interventions);
 
-        // On compare la liste des arrondissements du fichier d'entrée avec le fichier Json des arrondissements
         GestionDonneesAvecFichiersJson.gererArrondissementsDeMontrealInvalides
                 (tousLesArrondissements);
 
@@ -53,18 +45,15 @@ public class Main {
         ArrayList<Arrondissement> listeParcsInfractions = ListeParcsParArrondissement
                 .remplirListeParcsParArrondissements( interventions,tousLesArrondissements );
 
-        // Premiere ligne du fichier de sortie à ne pas traiter.
         ecrireStatistiquesInterventionsParArrondissement(cheminFichierSortie, listeParcsInfractions);
 
     }
 
     private static void ecrireStatistiquesInterventionsParArrondissement(String cheminFichierSortie, ArrayList<Arrondissement> listeParcsInfractions) {
-        //String premiereLigne = "Arrondissement, Nombre d'interventions, Nombre de parcs" ;
         String enTeteCsv = TraducteurSingleton.getInstance().traduire("enTeteCsv");
-        InterventionsPolicieresWriter.ecrireFichierSortie (cheminFichierSortie, enTeteCsv);
+        InterventionsPolicieresWriter interventionsPolicieresWriter = new InterventionsPolicieresWriter();
+        interventionsPolicieresWriter.ecrireFichierSortie (cheminFichierSortie, enTeteCsv);
 
-        // On calcule le nombre de parcs et d'infractions selon un arrondissement donné et on affiche dans
-        // le fichier de sortie
         for( Arrondissement uneListeParcsInfractions : listeParcsInfractions) {
 
             int totalInterventionsParArrondissement = InterventionsPolicieresStats
@@ -77,7 +66,7 @@ public class Main {
                     + " , " + totalInterventionsParArrondissement
                     + " , " + totalParcsParArrondissement;
 
-            InterventionsPolicieresWriter
+            interventionsPolicieresWriter
                     .ecrireFichierSortie (cheminFichierSortie,ligneEcrite );
         }
     }
