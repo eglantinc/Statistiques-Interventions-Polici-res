@@ -26,8 +26,6 @@ public class ListeParcsParArrondissementTest {
         // Création d'une liste vide String pour tester le cas ou l'arrondissement est vide.
         ArrayList<String> listeArrondissements = new ArrayList<>();
 
-        // Appelle de la methode remplirListeParcsParArrondissements pour remplir par une liste vide puis stocker
-        // dans le résultat.
         ArrayList<Arrondissement> resultat = ListeParcsParArrondissement
                 .remplirListeParcsParArrondissements( interventions, listeArrondissements );
         // On teste avec assertEquals si la taille de la liste est nulle.
