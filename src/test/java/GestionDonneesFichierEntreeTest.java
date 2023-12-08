@@ -20,7 +20,7 @@ public class GestionDonneesFichierEntreeTest {
         arrondissements.add( "LaSalle" );
         // New York n'est pas un arrondissement de Montreal.
         arrondissements.add( "New York" );
-        Throwable exception = assertThrows(InformationInvalideDansLeFichierEntree.class,
+        assertThrows(InformationInvalideDansLeFichierEntree.class,
                 () -> GestionDonneesAvecFichiersJson.gererArrondissementsDeMontrealInvalides(arrondissements) );
     }
 
@@ -30,7 +30,7 @@ public class GestionDonneesFichierEntreeTest {
         // Erreur en raison de la casse.
         arrondissements.add( "ahuntsic-Cartierville" );
         arrondissements.add( "LaSalle" );
-        Throwable exception = assertThrows(InformationInvalideDansLeFichierEntree.class,
+        assertThrows(InformationInvalideDansLeFichierEntree.class,
                 () -> GestionDonneesAvecFichiersJson.gererArrondissementsDeMontrealInvalides(arrondissements) );
     }
 
@@ -40,7 +40,7 @@ public class GestionDonneesFichierEntreeTest {
         // Erreur en raison d'un espace superflu.
         arrondissements.add( "Ahuntsic-Cartierville " );
         arrondissements.add( "LaSalle" );
-        Throwable exception = assertThrows(InformationInvalideDansLeFichierEntree.class,
+        assertThrows(InformationInvalideDansLeFichierEntree.class,
                 () -> GestionDonneesAvecFichiersJson.gererArrondissementsDeMontrealInvalides(arrondissements) );
     }
 
@@ -60,7 +60,7 @@ public class GestionDonneesFichierEntreeTest {
         // Erreur en raison d'un caractère spécial manquant.
         arrondissements.add( "Montréal Nord" );
         arrondissements.add( "LaSalle" );
-        Throwable exception = assertThrows(InformationInvalideDansLeFichierEntree.class,
+        assertThrows(InformationInvalideDansLeFichierEntree.class,
                 () -> GestionDonneesAvecFichiersJson.gererArrondissementsDeMontrealInvalides(arrondissements) );
     }
 
@@ -71,7 +71,7 @@ public class GestionDonneesFichierEntreeTest {
         interventionsPolicieres.add( "Bagarre" );
         // Meurtre n'est pas une intervention valide.
         interventionsPolicieres.add( "Meurtre" );
-        Throwable exception = assertThrows(InformationInvalideDansLeFichierEntree.class,
+        assertThrows(InformationInvalideDansLeFichierEntree.class,
                 () -> GestionDonneesAvecFichiersJson.
                         gererDescriptionInterventionsInvalides(interventionsPolicieres) );
     }
@@ -83,7 +83,7 @@ public class GestionDonneesFichierEntreeTest {
         interventionsPolicieres.add( "Vente de drogues" );
         // Erreur en raison de la casse.
         interventionsPolicieres.add( "bagarre" );
-        Throwable exception = assertThrows(InformationInvalideDansLeFichierEntree.class,
+        assertThrows(InformationInvalideDansLeFichierEntree.class,
                 () -> GestionDonneesAvecFichiersJson
                         .gererDescriptionInterventionsInvalides(interventionsPolicieres) );
     }
@@ -94,7 +94,7 @@ public class GestionDonneesFichierEntreeTest {
         // Erreur en raison d'un espace superflu.
         interventionsPolicieres.add( "Vente de drogues " );
         interventionsPolicieres.add( "Bagarre" );
-        Throwable exception = assertThrows(InformationInvalideDansLeFichierEntree.class,
+        assertThrows(InformationInvalideDansLeFichierEntree.class,
                 () -> GestionDonneesAvecFichiersJson
                         .gererDescriptionInterventionsInvalides(interventionsPolicieres) );
     }
@@ -105,7 +105,7 @@ public class GestionDonneesFichierEntreeTest {
         // Erreur en raison d'un caractère spécial manquant.
         interventionsPolicieres.add( "Manifestation illegale" );
         interventionsPolicieres.add( "Bagarre" );
-        Throwable exception = assertThrows(InformationInvalideDansLeFichierEntree.class,
+        assertThrows(InformationInvalideDansLeFichierEntree.class,
                 () -> GestionDonneesAvecFichiersJson
                         .gererDescriptionInterventionsInvalides(interventionsPolicieres) );
     }
@@ -116,7 +116,7 @@ public class GestionDonneesFichierEntreeTest {
         // Erreur en raison d'un caractère spécial manquant.
         interventionsPolicieres.add( "Possession consommation de stupéfiant" );
         interventionsPolicieres.add( "Bagarre" );
-        Throwable exception = assertThrows(InformationInvalideDansLeFichierEntree.class,
+        assertThrows(InformationInvalideDansLeFichierEntree.class,
                 () -> GestionDonneesAvecFichiersJson
                         .gererDescriptionInterventionsInvalides(interventionsPolicieres) );
     }

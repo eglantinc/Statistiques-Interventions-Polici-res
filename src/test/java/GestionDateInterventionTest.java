@@ -17,7 +17,7 @@ public class GestionDateInterventionTest {
     void testGestionDateIntervention() {
         String dateFuture = "2024-12-01";
         String nomFichier = "test_cas_attendu.csv";
-        int numeroDeLigne = InterventionsPolicieresReader.numeroDeLigne;
+        int numeroDeLigne = 6;
 
         assertThrows(InformationInvalideDansLeFichierEntree.class, () ->
                 GestionDateIntervention.gererErreurDate(nomFichier, numeroDeLigne, dateFuture)
@@ -30,7 +30,7 @@ public class GestionDateInterventionTest {
         String nomFichier = "test7.csv";
 
         assertThrows(InformationInvalideDansLeFichierEntree.class, () ->
-                GestionDateIntervention.gererErreurDate(nomFichier, InterventionsPolicieresReader.numeroDeLigne, "2020MARS21"));
+                GestionDateIntervention.gererErreurDate(nomFichier, 1, "2020MARS21"));
     }
 
     @Test
@@ -38,7 +38,7 @@ public class GestionDateInterventionTest {
         String nomFicher = "test1.csv";
 
         assertThrows(InformationInvalideDansLeFichierEntree.class, () ->
-                GestionDateIntervention.gererErreurDate(nomFicher, InterventionsPolicieresReader.numeroDeLigne, "20221206"));
+                GestionDateIntervention.gererErreurDate(nomFicher, 2, "20221206"));
     }
 
     @Test
@@ -46,6 +46,6 @@ public class GestionDateInterventionTest {
         String nomFichier = "test_cas_attendu.csv";
 
         assertThrows(InformationInvalideDansLeFichierEntree.class, () ->
-                GestionDateIntervention.gererErreurDate(nomFichier, InterventionsPolicieresReader.numeroDeLigne, "13-11-2024"));
+                GestionDateIntervention.gererErreurDate(nomFichier, 2, "13-11-2024"));
     }
 }

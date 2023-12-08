@@ -18,10 +18,8 @@ public class GestionChampsVideTest {
     @Test
     public void GestionChampsVideTest1(){
         String[] colonnes ={"2020-11-12", "Parc Henri-Bourassa", "Montréal-Nord", "Bagarre"};
-        String[] ligne = InterventionsPolicieresReader.PREMIERE_LIGNE;
-        int i = InterventionsPolicieresReader.numeroDeLigne;
 
-        Throwable exception = assertThrows(ArrayIndexOutOfBoundsException.class,
-                () -> GestionChampsVides.compterChampsAttendus(colonnes,i));
+        assertThrows(ArrayIndexOutOfBoundsException.class,
+                () -> GestionChampsVides.compterChampsAttendus(colonnes,2));
     }
 }
