@@ -26,7 +26,7 @@ public class JsonParser {
      * @throws IOException En cas d'erreur lors de la lecture du fichier JSON.
      */
     public static ArrayList<String> chargerInfosFichierJsonArrayList(String cheminFichierJson,
-                                                                     String nomArrayJson) throws ParseException {
+                                                                     String nomArrayJson) {
         ArrayList<String> informationSurInterventionDansJson = new ArrayList<>();
 
         try {
@@ -46,7 +46,7 @@ public class JsonParser {
 
         } catch ( IOException | ParseException e ) {
             // En cas d'erreur lors de la lecture du fichier, lance une exception avec un message traduit
-            TraducteurSingleton.getInstance().traduire("erreurLectureFichier", cheminFichierJson);
+           throw new RuntimeException(TraducteurSingleton.getInstance().traduire("erreurLectureFichier", cheminFichierJson));
         }
         return informationSurInterventionDansJson;
     }
