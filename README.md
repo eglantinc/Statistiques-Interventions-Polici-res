@@ -30,6 +30,10 @@ triés en ordre alphabétique, avec le nombre d'interventions policières enregi
     3. Pour garantir un état de projet cohérent, avant de travailler sur ce projet Maven, 
         utilisez la commande suivante dans votre terminal :
             `mvn clean install`
+        
+        Pour effectuer une installation propre (clean install) sur IntelliJ IDEA, 
+        vous pouvez également, dans l'IDE IntelliJ, cliquer sur 'm', ouvrir le dossier "Lifestyle" 
+        et double-cliquer sur 'install'.
     
     4. Vous allez ensuite pouvoir bien exécuter votre fichier jar suivant la commande suivante:
 
@@ -286,15 +290,17 @@ triés en ordre alphabétique, avec le nombre d'interventions policières enregi
 
         Si le nombre de colonnes dans l'en-tête est incorrect, le programme signalera une erreur comme suit :
         
-        Erreur ! Le nombre de colonnes dans l'en-tête ne correspond pas à celui attendu. 
+        Erreur dans le fichier 'nom_du_fichier' ! Le nombre de colonnes dans l'en-tête ne correspond pas à celui attendu. 
         Veuillez vous assurer que l'en-tête de votre fichier comporte les 5 champs suivants, dans l'ordre 
         indiqué et sans espaces blancs : 'Date', 'Heure', 'Parc', 'Arrondissement', 'Description'.
         
         Si votre programme est lancé avec le paramètre '--english' :
         
-        The number of columns in the header does not match the expected count. 
-        Please ensure that your file header contains the following 5 fields, 
-        in the specified order and without any white spaces: 'Date', 'Heure', 'Parc', 'Arrondissement', 'Description'.
+        Error in file 'nom_du_fichier'! The number of columns in the header does not match the expected count. 
+        Please ensure that your file header contains the following 5 fields, in the specified 
+        order and without any white spaces: 'Date', 'Heure', 'Parc', 'Arrondissement', 'Description'.
+
+        Où 'nom_du_fichier' désigne le nom du fichier d'entrée csv
 
     13- Erreur de champ inapproprié dans l'en-tête du fichier d'entrée
         
