@@ -20,7 +20,7 @@ public class InterventionPoliciereTest {
                 "Ahuntsic-Cartierville","Vente de drogues");
         InterventionPoliciere m2 = new InterventionPoliciere("2023-09-01","20:41","Parc Camille",
                 "Ahuntsic-Cartierville","Vente de drogues");
-        Assertions.assertEquals(m1.toString(),m2.toString());
+        assertEquals(m1.toString(),m2.toString());
     }
 
     @Test
@@ -30,7 +30,6 @@ public class InterventionPoliciereTest {
                 "Ahuntsic-Cartierville","Vente de drogues");
         InterventionPoliciere m2 = new InterventionPoliciere("2023-09-02","12:41","Parc Camille",
                 "Ahuntsic-Cartierville","Bagarre");
-        //Assertions.assertEquals(m1.toString(),m2.toString());
-        Assertions.assertNotEquals (m1.toString(),m2.toString());
+        assertNotEquals (m1.toString(),m2.toString());
     }
 }
