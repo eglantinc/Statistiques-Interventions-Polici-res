@@ -1,7 +1,5 @@
 *.iml
 .DS_Store
 *.class
-/target/
-/META-INF/
 .idea/
 
