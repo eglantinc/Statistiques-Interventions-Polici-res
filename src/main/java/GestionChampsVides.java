@@ -1,18 +1,41 @@
 import java.nio.file.Paths;
 
+/**
+ * Cette classe fournit des méthodes pour gérer les champs vides dans un fichier CSV.
+ *
+ * @Author: Eglantine Clervil
+ * @Courriel: clervil.eglantine_anne@courrier.uqam.ca
+ * @Code-permanent: CLEE89530109
+ * @Groupe: 30
+ */
 public class GestionChampsVides {
 
+    /**
+     * Le nombre attendu de colonnes dans le fichier CSV.
+     */
     public static final int NOMBRE_COLONNES = 5;
 
+    /**
+     * Le chemin du fichier CSV.
+     */
     private String fichierCSV;
+
+    /**
+     * La première ligne du fichier CSV.
+     */
     private String[] premiereLigne;
 
+    /**
+     * Constructeur de la classe GestionChampsVides.
+     *
+     * @param fichierCSV    Le chemin du fichier CSV.
+     * @param premiereLigne La première ligne du fichier CSV.
+     */
     public GestionChampsVides(String fichierCSV, String[] premiereLigne) {
         // Pour obtenir seulement le nom du fichier csv
         this.fichierCSV = Paths.get(fichierCSV).getFileName().toString();
         this.premiereLigne = premiereLigne;
     }
-
 
     /**
      * Cette méthode vérifie la présence de valeurs dans les colonnes d'une ligne spécifique d'un fichier CSV.
@@ -31,7 +54,6 @@ public class GestionChampsVides {
         }
     }
 
-
     /**
      * Vérifie si le nombre de champs dans le tableau 'colonnes' est conforme
      * au nombre attendu de colonnes (NOMBRE_COLONNES). Si le nombre de colonnes
@@ -43,17 +65,10 @@ public class GestionChampsVides {
      * @throws ArrayIndexOutOfBoundsException Si le nombre de colonnes est différent
      *                                        du nombre attendu (NOMBRE_COLONNES).
      */
-    public static void compterChampsAttendus(String[] colonnes, int numeroDeLigne){
+    public static void compterChampsAttendus(String[] colonnes, int numeroDeLigne) {
         // Vérifier si le nombre de champs est inférieur ou supérieur à celui attendu
         if (colonnes.length != NOMBRE_COLONNES) {
             throw new ArrayIndexOutOfBoundsException(TraducteurSingleton.getInstance().traduire("erreurNombreChampsInattendus", NOMBRE_COLONNES, numeroDeLigne));
         }
     }
-
-
 }
-
-
-
-
-

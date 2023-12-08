@@ -22,4 +22,22 @@ public class GestionChampsVideTest {
         assertThrows(ArrayIndexOutOfBoundsException.class,
                 () -> GestionChampsVides.compterChampsAttendus(colonnes,2));
     }
+
+    @Test
+    public void GestionChampsVideTest2(){
+        String[] colonnes ={"2020-11-12", "20:20", "Parc Henri-Bourassa", "Bagarre"};
+        assertThrows(ArrayIndexOutOfBoundsException.class,
+                () -> GestionChampsVides.compterChampsAttendus(colonnes,2));
+
+
+    }
+
+    @Test
+    public void GestionChampVideTest2() {
+        String [] premiereLigne = {"Date", "Heure", "Parc", "Arrondissement", "Description"};
+        GestionChampsVides gestionChampsVides = new GestionChampsVides("test1.csv", premiereLigne);
+        String[] colonnes ={"2020-11-12", "20:20", "Parc Henri-Bourassa", "", "Bagarre"};
+        assertThrows(ChampVideDansFichierEntree.class, () -> gestionChampsVides.gererChampVide(colonnes, 1));
+
+    }
 }
