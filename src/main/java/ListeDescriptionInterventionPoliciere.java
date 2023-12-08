@@ -40,7 +40,7 @@ public class ListeDescriptionInterventionPoliciere {
     }
 
     /**
-     * Cette methode remplirListeInterventions() permet de récupérer la liste d'objets provenant de la lecture du
+     * Cette methode remplirListeInterventionsPolicieres() permet de récupérer la liste d'objets provenant de la lecture du
      * fichier d'entrée, créer une liste d'interventions provenant des interventions de cette liste afin de
      * rechercher les infractions identiques. Elle prend en paramètre la liste d'objets InterventionPoliciere et
      * le fichier de sortie.
