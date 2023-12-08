@@ -19,10 +19,8 @@ public class InterventionPoliciereReaderTest {
         traducteur.setLangueEnCours(Traducteur.FRANCAIS);
     }
 
-    // TODO: À bien valider
     @Test
     public void lireInterventionsPolicieresTest() throws IOException {
-        // Given
         BufferedReader mockedBufferedReader = mock(BufferedReader.class);
         InterventionsPolicieresReader interventionsPolicieresReaderMock = new InterventionsPolicieresReader("src/test/resources/testmock.csv");
 
@@ -38,14 +36,15 @@ public class InterventionPoliciereReaderTest {
 
 
         assertEquals(3, result.size());
+        assertEquals("2023-12-01", result.get(0).getDate());
+        assertEquals("14:30", result.get(0).getHeure());
 
     }
 
     @Test
     public void lireInterventionPoliciereTest2() {
         InterventionsPolicieresReader interventionsPolicieresReader = new InterventionsPolicieresReader("cheminFichierInexistant");
-        assertThrows( RuntimeException.class, ( ) ->
-                interventionsPolicieresReader.lireInterventionsPolicieres() );
+        assertThrows( RuntimeException.class, interventionsPolicieresReader::lireInterventionsPolicieres);
     }
 }
 
