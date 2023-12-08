@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 public class Main {
 
-    public static void main(String[] args) throws IOException, ParseException {
+    public static void main(String[] args) {
         Traducteur traducteur = TraducteurSingleton.getInstance();
         boolean estAnglais = args[0].equals("--english");
         // Si le logiciel est exécuté en anglais, alors, le fichier d'entrée sera à l'index 1,
