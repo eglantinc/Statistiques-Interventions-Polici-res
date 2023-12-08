@@ -5,101 +5,132 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 
 /**
- * Cette classe permet de lire des données d'un fichier CSV d'interventions policières dont on a le chemin.
- *
- * @Author: Eglantine Clervil, Minh Ha, Farah Bouaiche, Kamdem Suzanne
- * @Courriel: clervil.eglantine_anne@courrier.uqam.ca, ha.le_minh@courrier.uqam.ca,
- * bouaiche.farah@courrier.uqam.ca, kamdem_pouomogne.suzanne_leocadie@courrier.uqam.ca
- * @Code-permanent: CLEE89530109, HAXL19089505, BOUF06379700, KAMS17628009
+ * La classe InterventionsPolicieresReader est responsable de la lecture des interventions policières à partir d'un fichier CSV.
+ * @Author: Eglantine Clervil
+ * @Courriel: clervil.eglantine_anne@courrier.uqam.ca
+ * @Code-permanent: CLEE89530109
  * @Groupe: 30
  */
 public class InterventionsPolicieresReader {
 
-    private String cheminFichierSaisi;
-    public static int numeroDeLigne = 1;
-    public final static String [] PREMIERE_LIGNE = {"Date", "Heure", "Parc", "Arrondissement", "Description"};
+    /**
+     * Chemin du fichier d'entrée.
+     */
+    public String cheminFichierSaisi;
+
+    /**
+     * Numéro de la ligne actuellement traitée.
+     */
+    private int numeroDeLigne = 1;
+
+    /**
+     * Première ligne attendue dans le fichier CSV.
+     */
+    public static final String[] PREMIERE_LIGNE = {"Date", "Heure", "Parc", "Arrondissement", "Description"};
 
     /**
      * Constructeur de la classe InterventionsPolicieresReader.
      *
-     * @param cheminFichierSaisi Le chemin du fichier à partir duquel les données d'interventions policières
-     *                            seront lues.
+     * @param cheminFichierSaisi Le chemin du fichier d'entrée.
      */
-    public InterventionsPolicieresReader( String cheminFichierSaisi ) {
-
+    public InterventionsPolicieresReader(String cheminFichierSaisi) {
         this.cheminFichierSaisi = cheminFichierSaisi;
     }
 
     /**
-     * Récupère le chemin du fichier à lire.
+     * Extrait le nom du fichier à partir du chemin complet.
      *
-     * @return le chemin du fichier à lire.
+     * @return Le nom du fichier.
      */
-    public String getCheminFichierSaisi() {
-
-        return cheminFichierSaisi;
+    private String getNomFichier() {
+        return Paths.get(cheminFichierSaisi).getFileName().toString();
     }
 
     /**
-     * Cette méthode crée une liste d'objets InterventionPoliciere à partir des données lues dans un fichier CSV.
+     * Lit les interventions policières à partir du fichier CSV.
      *
-     * @param cheminFichier Le chemin d'accès au fichier CSV contenant les données des interventions policières.
-     * @return Une liste d'objets InterventionPoliciere créés à partir des données du fichier.
-     * @throws RuntimeException Si une erreur d'entrée/sortie (IOException) survient pendant la lecture du fichier.
+     * @return Une liste d'objets InterventionPoliciere.
      */
-    public static ArrayList<InterventionPoliciere> creerListeInterventionsPolicieres( String cheminFichier ) {
-
-        GestionChampsVides gestionnaireChampsVide = new GestionChampsVides(cheminFichier, PREMIERE_LIGNE);
-
+    public ArrayList<InterventionPoliciere> lireInterventionsPolicieres() {
         ArrayList<InterventionPoliciere> interventions = new ArrayList<>();
 
-        try( BufferedReader lecteur = new BufferedReader(new FileReader(cheminFichier ) ) ) {
-
-            String ligne;
-            boolean estEntete = true;
-
-            while( ( ligne = lecteur.readLine()) != null ) {
-                GestionEnTeteFichierEntree.gererEnTeteFichierCsv(ligne, estEntete, Paths.get(cheminFichier).getFileName().toString());
-                estEntete = false;
-
-                if( numeroDeLigne > 1 ) {
-
-                    String[] champs = ligne.split("," );
-
-                    gererLesChampsVidesFichierEntree(champs, gestionnaireChampsVide);
-                    InterventionPoliciere unObjetInterventionPoliciere = creerObjetInterventionPoliciere(champs, interventions);
-                    gererLesErreursTemporelles(Paths.get(cheminFichier).getFileName().toString(), unObjetInterventionPoliciere);
-                }
-                numeroDeLigne++;
-            }
-        } catch( IOException ex ) {
-            throw new RuntimeException(TraducteurSingleton.getInstance().traduire("erreurLectureFichier", cheminFichier) );
+        try (BufferedReader lecteur = new BufferedReader(new FileReader(cheminFichierSaisi))) {
+            traiterFichierCsv(lecteur, interventions);
+        } catch (IOException ex) {
+            throw new RuntimeException(TraducteurSingleton.getInstance().traduire("erreurLectureFichier", cheminFichierSaisi));
         }
+
         return interventions;
     }
 
+    /**
+     * Traite le fichier CSV ligne par ligne.
+     *
+     * @param lecteur       Le lecteur de fichier.
+     * @param interventions La liste des interventions policières.
+     * @throws IOException En cas d'erreur lors de la lecture du fichier.
+     */
+    private void traiterFichierCsv(BufferedReader lecteur, ArrayList<InterventionPoliciere> interventions) throws IOException {
+        String ligne;
+        boolean estEntete = true;
 
-    private static void gererLesErreursTemporelles(String nomFichier, InterventionPoliciere unObjetInterventionPoliciere) {
-        GestionDateIntervention.gererErreurDate(nomFichier, numeroDeLigne, unObjetInterventionPoliciere
-                .getDate());
-        GestionHeureIntervention.gererErreurFormatHeure (nomFichier, numeroDeLigne, unObjetInterventionPoliciere
-                .getHeure());
+        while ((ligne = lecteur.readLine()) != null) {
+            GestionEnTeteFichierEntree.gererEnTeteFichierCsv(ligne, estEntete, getNomFichier());
+            estEntete = false;
+
+            if (numeroDeLigne > 1) {
+                String[] champs = ligne.split(",");
+                traiterInterventionPoliciere(champs, interventions);
+            }
+            numeroDeLigne++;
+        }
     }
 
-    private static void gererLesChampsVidesFichierEntree(String[] champs, GestionChampsVides gestionnaireChampsVide) {
-        // Tester si la longueur de la chaine est égale a 5
-        GestionChampsVides.compterChampsAttendus(champs,numeroDeLigne);
-        gestionnaireChampsVide.gererChampVide(champs,numeroDeLigne);
+    /**
+     * Traite les champs d'une ligne pour créer une InterventionPoliciere et les ajouter à la liste.
+     *
+     * @param champs         Les champs d'une ligne.
+     * @param interventions La liste des interventions policières.
+     */
+    private void traiterInterventionPoliciere(String[] champs, ArrayList<InterventionPoliciere> interventions) {
+        GestionChampsVides gestionnaireChampsVide = new GestionChampsVides(cheminFichierSaisi, PREMIERE_LIGNE);
+        gererChampsVidesFichierEntree(champs, gestionnaireChampsVide);
+
+        InterventionPoliciere unObjetInterventionPoliciere = creerObjetInterventionPoliciere(champs);
+        gererErreursTemporelles(getNomFichier(), unObjetInterventionPoliciere);
+
+        interventions.add(unObjetInterventionPoliciere);
     }
 
-    private static InterventionPoliciere creerObjetInterventionPoliciere(String[] champs, ArrayList<InterventionPoliciere> interventions) {
-        InterventionPoliciere unObjetInterventionPoliciere = InterventionPoliciere
-                .creerInstanceInterventionPoliciere (champs[0], champs[1], champs[2],
-                        champs[3], champs[4]);
-
-        interventions.add( unObjetInterventionPoliciere );
-        return unObjetInterventionPoliciere;
+    /**
+     * Gère les erreurs temporelles (date et heure) d'une intervention policière.
+     *
+     * @param nomFichier                   Le nom du fichier.
+     * @param unObjetInterventionPoliciere L'objet InterventionPoliciere.
+     */
+    private void gererErreursTemporelles(String nomFichier, InterventionPoliciere unObjetInterventionPoliciere) {
+        GestionDateIntervention.gererErreurDate(nomFichier, numeroDeLigne, unObjetInterventionPoliciere.getDate());
+        GestionHeureIntervention.gererErreurFormatHeure(nomFichier, numeroDeLigne, unObjetInterventionPoliciere.getHeure());
     }
 
+    /**
+     * Gère les champs vides d'une ligne du fichier d'entrée.
+     *
+     * @param champs                 Les champs d'une ligne.
+     * @param gestionnaireChampsVide Le gestionnaire de champs vides.
+     */
+    private void gererChampsVidesFichierEntree(String[] champs, GestionChampsVides gestionnaireChampsVide) {
+        GestionChampsVides.compterChampsAttendus(champs, numeroDeLigne);
+        gestionnaireChampsVide.gererChampVide(champs, numeroDeLigne);
+    }
 
+    /**
+     * Crée un objet InterventionPoliciere à partir des champs d'une ligne.
+     *
+     * @param champs Les champs d'une ligne.
+     * @return L'objet InterventionPoliciere.
+     */
+    private InterventionPoliciere creerObjetInterventionPoliciere(String[] champs) {
+        return InterventionPoliciere.creerInstanceInterventionPoliciere(champs[0], champs[1], champs[2], champs[3], champs[4]);
+    }
 }
