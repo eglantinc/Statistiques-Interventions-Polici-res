@@ -3,16 +3,25 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+/**
+ * Classe de tests unitaires pour la classe GestionDateIntervention.
+ */
 public class GestionDateInterventionTest {
+
     private Traducteur traducteur;
 
+    /**
+     * Initialisation avant chaque test.
+     */
     @BeforeEach
     void setUp() {
         traducteur = TraducteurSingleton.getInstance();
         traducteur.setLangueEnCours(Traducteur.FRANCAIS);
     }
 
-
+    /**
+     * Teste la gestion d'une date future invalide.
+     */
     @Test
     void testGestionDateIntervention() {
         String dateFuture = "2024-12-01";
@@ -24,6 +33,9 @@ public class GestionDateInterventionTest {
         );
     }
 
+    /**
+     * Teste la gestion d'un format de date incorrect.
+     */
     @Test
     void testGestionDateIntervention4() {
 
@@ -33,6 +45,9 @@ public class GestionDateInterventionTest {
                 GestionDateIntervention.gererErreurDate(nomFichier, 1, "2020MARS21"));
     }
 
+    /**
+     * Teste la gestion d'une date au format incorrect.
+     */
     @Test
     void testGestionDateIntervention5() {
         String nomFicher = "test1.csv";
@@ -41,6 +56,9 @@ public class GestionDateInterventionTest {
                 GestionDateIntervention.gererErreurDate(nomFicher, 2, "20221206"));
     }
 
+    /**
+     * Teste la gestion d'une date au format incorrect.
+     */
     @Test
     void testGestionDateIntervention6() {
         String nomFichier = "test_cas_attendu.csv";

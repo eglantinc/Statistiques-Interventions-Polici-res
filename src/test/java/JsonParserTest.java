@@ -1,11 +1,11 @@
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
-
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+/**
+ * Classe de tests unitaires pour la classe JsonParser.
+ */
 public class JsonParserTest {
     private Traducteur traducteur;
 
@@ -15,17 +15,22 @@ public class JsonParserTest {
         traducteur.setLangueEnCours(Traducteur.FRANCAIS);
     }
 
+    /**
+     * Teste le chargement d'informations depuis un fichier JSON dans une ArrayList.
+     * Lève une exception si le fichier JSON ou le nom de l'array est inexistant.
+     */
     @Test
     public void chargerInfosFichierJsonDansArrayListTest() {
-        // Fichier quelconque et nom de l'array quelconque.
         assertThrows(RuntimeException.class,
                 () -> JsonParser.chargerInfosFichierJsonArrayList("fichiernonexistant.json", "arraynonexistant"));
     }
 
-
+    /**
+     * Teste le chargement d'informations depuis un fichier JSON dans une ArrayList.
+     * Lève une exception en cas de faute de frappe dans le nom de l'array JSON.
+     */
     @Test
     public void chargerInfosFichierJsonDansArrayListTest2() {
-        // Faute de frappe dans le nom de l'array json.
         assertThrows(RuntimeException.class,
                 () -> JsonParser.chargerInfosFichierJsonArrayList
                         ("arrondissements.json", "arrondissement"));

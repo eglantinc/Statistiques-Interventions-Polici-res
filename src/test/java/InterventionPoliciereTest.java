@@ -1,20 +1,17 @@
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
+
+/**
+ * Classe de tests unitaires pour la classe InterventionPoliciere.
+ */
 public class InterventionPoliciereTest {
 
-    private Traducteur traducteur;
 
-    @BeforeEach
-    void setUp() {
-        traducteur = TraducteurSingleton.getInstance();
-        traducteur.setLangueEnCours(Traducteur.FRANCAIS);
-    }
-
-    // Permet de tester si 2 objets ont le meme contenu.
+    /**
+     * Teste si deux instances d'InterventionPoliciere ayant le même contenu sont identiques.
+     */
     @Test
-    public void InterventionPoliciereTestInstancesIdentiques() {
+    public void toStringTest() {
 
         InterventionPoliciere m1 = new InterventionPoliciere("2023-09-01","20:41","Parc Camille",
                 "Ahuntsic-Cartierville","Vente de drogues");
@@ -23,8 +20,11 @@ public class InterventionPoliciereTest {
         assertEquals(m1.toString(),m2.toString());
     }
 
+    /**
+     * Teste si deux instances d'InterventionPoliciere ayant des contenus différents ne sont pas identiques.
+     */
     @Test
-    public void InterventionPoliciereTestContenuInstancesNonIdentiques() {
+    public void toStringTest2() {
 
         InterventionPoliciere m1 = new InterventionPoliciere("2023-09-01","20:41","Parc Camille",
                 "Ahuntsic-Cartierville","Vente de drogues");

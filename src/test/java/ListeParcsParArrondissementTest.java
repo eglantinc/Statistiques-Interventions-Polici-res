@@ -5,63 +5,42 @@ import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-
+/**
+ * Classe de tests unitaires pour la classe ListeParcsParArrondissement.
+ */
 public class ListeParcsParArrondissementTest {
 
-    private Traducteur traducteur;
-
-    @BeforeEach
-    void setUp() {
-        traducteur = TraducteurSingleton.getInstance();
-        traducteur.setLangueEnCours(Traducteur.FRANCAIS);
-    }
-
+    /**
+     * Teste la méthode remplirListeParcsParArrondissements avec une liste d'interventions vide.
+     *
+     */
     @Test
-    public void testRemplirListeParcsParArrondissementsAvecListeVideTest1() {
-
-        // Creation d'une liste vide d'objets de type InterventionsPoliciere.
-
+    public void remplirListeParcsParArrondissementsAvecListeVideTest() {
         ArrayList<InterventionPoliciere> interventions = new ArrayList<>();
-
-        // Création d'une liste vide String pour tester le cas ou l'arrondissement est vide.
         ArrayList<String> listeArrondissements = new ArrayList<>();
-
         ArrayList<Arrondissement> resultat = ListeParcsParArrondissement
-                .remplirListeParcsParArrondissements( interventions, listeArrondissements );
-        // On teste avec assertEquals si la taille de la liste est nulle.
-        assertEquals( 0, resultat.size() );
+                .remplirListeParcsParArrondissements(interventions, listeArrondissements);
+        assertEquals(0, resultat.size());
     }
 
+    /**
+     * Teste la méthode remplirListeParcsParArrondissements avec une liste d'interventions non vide.
+     *
+     */
     @Test
-    public void testRemplirListeParcsParArrondissementsNonVideTest2() {
-
-        //Création des Instances de classe InterventionPoliciere.
+    public void remplirListeParcsParArrondissementsNonVideTest2() {
         ArrayList<InterventionPoliciere> interventions = new ArrayList<>();
+        interventions.add(new InterventionPoliciere("2020-10-12", "14:30", "Parc Oscar", "Montréal-Nord", "Vols qualifiés"));
+        interventions.add(new InterventionPoliciere("2023-09-13", "16:45", "Parc Poirier", "Verdun", "Bagarre"));
+        interventions.add(new InterventionPoliciere("2021-08-14", "12:00", "Parc de l'Aqueduc", "LaSalle", "Vente de drogues"));
+        interventions.add(new InterventionPoliciere("2022-07-15", "10:15", "Parc René-Lévesque", "Lachine", "Vols qualifiés"));
+        interventions.add(new InterventionPoliciere("2020-05-16", "18:20", "Parc Henri-Bourassa", "Montréal-Nord", "Port d'arme prohibée"));
 
-        interventions.add( new InterventionPoliciere( "2020-10-12", "14:30",
-                "Parc Oscar", "Montréal-Nord", "Vols qualifiés" ) );
+        ArrayList<String> listeArrondissements = new ArrayList<>(Arrays.asList("Montréal-Nord", "Verdun", "LaSalle", "Lachine"));
 
-        interventions.add( new InterventionPoliciere( "2023-09-13", "16:45",
-                "Parc Poirier", "Verdun", "Bagarre" ) );
-
-        interventions.add( new InterventionPoliciere( "2021-08-14", "12:00",
-                "Parc de l'Aqueduc", "LaSalle", "Vente de drogues" ) );
-
-        interventions.add( new InterventionPoliciere( "2022-07-15", "10:15",
-                "Parc René-Lévesque", "Lachine", "Vols qualifiés" ) );
-
-        interventions.add( new InterventionPoliciere( "2020-05-16", "18:20",
-                "Parc Henri-Bourassa", "Montréal-Nord", "Port d'arme prohibée" ) );
-
-        // Création de la liste d'arrondissements avec quatre valeurs.
-
-        ArrayList<String> listeArrondissements = new ArrayList<>
-                ( Arrays.asList( "Montréal-Nord", "Verdun", "LaSalle", "Lachine" ) );
-
-        // Vérifier que la liste n'est pas vide.
         ArrayList<Arrondissement> resultat = ListeParcsParArrondissement
-                .remplirListeParcsParArrondissements( interventions, listeArrondissements );
+                .remplirListeParcsParArrondissements(interventions, listeArrondissements);
 
-        assertEquals( listeArrondissements.size(), resultat.size() );
+        assertEquals(listeArrondissements.size(), resultat.size());
     }
 }
