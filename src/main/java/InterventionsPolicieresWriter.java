@@ -1,3 +1,5 @@
+import MockEcritureFichier.InterventionsPolicieresWriterService;
+
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -13,6 +15,16 @@ import java.io.IOException;
  */
 public class InterventionsPolicieresWriter {
 
+    private InterventionsPolicieresWriterService serviceEcritureFichier;
+
+    public InterventionsPolicieresWriter(InterventionsPolicieresWriterService serviceEcritureFichier) {
+        this.serviceEcritureFichier = serviceEcritureFichier;
+    }
+
+    public InterventionsPolicieresWriter() {
+        this.serviceEcritureFichier = null;
+    }
+
     /**
      * Cette méthode écrit une ligne de texte dans un fichier de sortie pour la nouvelle statistique.
      *
@@ -27,9 +39,18 @@ public class InterventionsPolicieresWriter {
             tamponEcriture.write(ligneSaisie);
             tamponEcriture.newLine();
 
+            gererServiceEcriture(fichierSortie, ligneSaisie);
+
         } catch (IOException e) {
             throw new RuntimeException(TraducteurSingleton.getInstance()
                     .traduire("erreurEcritureDansFichier", fichierSortie));
         }
     }
+
+    private void gererServiceEcriture(String fichierSortie, String ligneSaisie) throws IOException {
+        if (serviceEcritureFichier != null) {
+            serviceEcritureFichier.ecrireDansFichierSortie(fichierSortie, ligneSaisie);
+        }
+    }
+
 }
