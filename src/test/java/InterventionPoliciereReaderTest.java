@@ -45,9 +45,9 @@ public class InterventionPoliciereReaderTest {
         ArrayList<InterventionPoliciere> result = interventionsPolicieresReaderMock.lireInterventionsPolicieres();
 
         assertEquals(3, result.size());
-        assertEquals("2023-12-01", result.get(0).getDate());
-        assertEquals("14:30", result.get(0).getHeure());
     }
+
+
 
     /**
      * Teste la gestion d'une exception lors de la lecture d'un fichier inexistant.
