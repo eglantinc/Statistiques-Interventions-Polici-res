@@ -44,5 +44,17 @@ public class InterventionsPolicieresWriterTest {
         Assertions.assertEquals(ligneSaisie, mockFileWriterService.ligneSaisie);
     }
 
+    @Test
+    public void ecrireFichierSortieCallsFileWriterServiceTest3(){
+        MockInterventionsPolicieresWriter mockFileWriterService = new MockInterventionsPolicieresWriter();
+        InterventionsPolicieresWriter interventionsPolicieresWriter = new InterventionsPolicieresWriter(mockFileWriterService);
+
+        String fichierSortie = "/nonexistant/testmock.csv";
+        String ligneSaisie = "2023-12-01,14:30,Parc A,Arrondissement X,Description A";
+        Assertions.assertThrows(RuntimeException.class, () ->
+                interventionsPolicieresWriter.ecrireFichierSortie(fichierSortie, ligneSaisie));
+    }
+
+
 }
 
