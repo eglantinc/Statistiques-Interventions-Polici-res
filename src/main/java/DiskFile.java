@@ -21,7 +21,7 @@ import java.nio.charset.StandardCharsets;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 
-public class DiskFile {
+public class  DiskFile {
 
     public static String loadFileIntoString( String cheminFichier ) throws IOException {
 
