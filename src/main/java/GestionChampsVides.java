@@ -3,17 +3,16 @@ import java.nio.file.Paths;
 /**
  * Cette classe fournit des méthodes pour gérer les champs vides dans un fichier CSV.
  *
- * @Author: Eglantine Clervil
- * @Courriel: clervil.eglantine_anne@courrier.uqam.ca
- * @Code-permanent: CLEE89530109
+ * @Author: Eglantine Clervil, Minh Ha, Farah Bouaiche, Suzanne Kamdem
+ * @Courriel: clervil.eglantine_anne@courrier.uqam.ca, ha.le_minh@courrier.uqam.ca, bouaiche.farah@courrier.uqam.ca, kamdem_pouomogne.suzanne_leocadie@courrier.uqam.ca
+ * @Code-permanent: CLEE89530109, HAXL19089505, BOUF06379700, KAMS17628009
  * @Groupe: 30
- */
+ *
+ * */
 public class GestionChampsVides {
 
-    // Le nombre attendu de colonnes dans le fichier CSV.
     public static final int NOMBRE_COLONNES = 5;
 
-    // Le chemin du fichier CSV.
     private String fichierCSV;
 
     // La première ligne du fichier CSV.
