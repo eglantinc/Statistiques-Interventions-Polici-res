@@ -1,7 +1,5 @@
 package MockEcritureFichier;
 
-import MockEcritureFichier.InterventionsPolicieresWriterService;
-
 public class MockInterventionsPolicieresWriter implements InterventionsPolicieresWriterService {
     public String fichierSortie;
     public String ligneSaisie;
